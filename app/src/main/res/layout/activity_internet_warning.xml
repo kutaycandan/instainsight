@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/insta_blue">
+    <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+        android:id="@+id/tv_insta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="InstaInsight"
+        android:layout_centerHorizontal="true"
+        android:textSize="40sp"
+        android:layout_marginTop="240px"
+        android:textColor="@color/white"
+        android:layout_marginBottom="50dp"/>
+
+
+    <LinearLayout
+        android:layout_below="@+id/tv_insta"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/insta_blue"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/background_main_warning_top"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_warning_white" />
+            <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+                android:layout_marginTop="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:text="Your Internet connection appears to " />
+            <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:text="be offline. Please check your connection" />
+
+            <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:text="status and try again." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:gravity="center"
+            android:background="@drawable/background_main_warning_bot">
+
+            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:text="Refresh" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

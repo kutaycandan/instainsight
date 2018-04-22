@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#01d5d8</color>
+    <color name="colorPrimaryDark">#01d5d8</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- InstaInsight Colors -->
+
+    <color name="white">#ffffff</color>
+    <color name="insta_blue">#01d5d8</color>
+
+
+</resources>

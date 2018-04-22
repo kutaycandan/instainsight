@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/insta_blue"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    >
+    <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+        android:id="@+id/tv_insta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="InstaInsight"
+        android:textSize="40sp"
+        android:layout_marginTop="120dp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="70dp"/>
+
+    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="Please wait,"/>
+    <com.kutaycandan.instainsight.widget.textview.HurmeSemiBoldObliqueTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="we’re checking the requirements."/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_marginTop="40dp"
+        android:id="@+id/gif_loader"
+        android:background="@drawable/gif_loading_white"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+</LinearLayout>
