@@ -8,6 +8,8 @@
 
     <color name="white">#ffffff</color>
     <color name="insta_blue">#01d5d8</color>
+    <color name="border_color">#b7b7b7</color>
+    <color name="text_black">#414141</color>
 
 
 </resources>

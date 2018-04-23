@@ -16,6 +16,7 @@
             android:background="@drawable/ic_coin"
             android:layout_gravity="center_vertical"/>
         <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            android:id="@+id/tv_my_stalks"
             android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,7 +62,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:text="Swipe Left"
+            android:text="Swipe Left."
             android:layout_gravity="center"/>
     </LinearLayout>
 

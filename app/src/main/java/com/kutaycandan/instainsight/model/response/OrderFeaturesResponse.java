@@ -5,15 +5,15 @@ import com.kutaycandan.instainsight.model.IIInvoice;
 import java.io.Serializable;
 
 public class OrderFeaturesResponse implements Serializable {
-    IIInvoice IInvoice;
+    IIInvoice IIInvoice;
     int StalkBalance;
 
     public IIInvoice getIInvoice() {
-        return IInvoice;
+        return IIInvoice;
     }
 
     public void setIInvoice(IIInvoice IInvoice) {
-        this.IInvoice = IInvoice;
+        this.IIInvoice = IInvoice;
     }
 
     public int getStalkBalance() {

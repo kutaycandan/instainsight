@@ -23,6 +23,7 @@ import com.kutaycandan.instainsight.R;
 import com.kutaycandan.instainsight.constants.ServiceConstant;
 import com.kutaycandan.instainsight.constants.SharedPrefsConstant;
 import com.kutaycandan.instainsight.model.IIInvoice;
+import com.kutaycandan.instainsight.model.IIInvoices;
 import com.kutaycandan.instainsight.model.request.LoginByCookieRequest;
 import com.kutaycandan.instainsight.model.request.RegisterRequest;
 import com.kutaycandan.instainsight.model.response.BaseResponse;
@@ -30,10 +31,14 @@ import com.kutaycandan.instainsight.model.response.RegisterResponse;
 import com.kutaycandan.instainsight.service.InstaInsightService;
 import com.kutaycandan.instainsight.service.RestApi;
 import com.kutaycandan.instainsight.ui.fragment.GetCoinFragment;
+import com.kutaycandan.instainsight.ui.fragment.SearchBarFragment;
 import com.kutaycandan.instainsight.ui.fragment.SearchFragment;
+import com.kutaycandan.instainsight.ui.fragment.SpendCoinFragment;
+import com.kutaycandan.instainsight.util.BusStation;
 import com.kutaycandan.instainsight.util.SharedPrefsHelper;
 import com.kutaycandan.instainsight.util.Utils;
 import com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView;
+import com.squareup.otto.Bus;
 
 import java.util.ArrayList;
 
@@ -43,12 +48,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements SearchBarFragment.SearchBarListener, SpendCoinFragment.SpendCoinListener {
 
     private static final int NUM_PAGES = 2;
 
-    ArrayList<IIInvoice> iiInvoices;
-    ArrayList<String> names;
+    ArrayList<IIInvoices> iiInvoices;
+    ArrayList<String> names=new ArrayList<String>();
     @BindView(R.id.vp_main)
     ViewPager vpMain;
     @BindView(R.id.iv_swipe)
@@ -63,6 +68,8 @@ public class MainActivity extends BaseActivity {
     String cookie;
     String userCode;
     boolean isConnected;
+
+    String username;
 
     InstaInsightService instaInsightService;
 
@@ -205,6 +212,22 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void askUserToSpendCoin(String username) {
+        this.username=username;
+        BusStation.getBus().post("showSpendCoin");
+    }
+
+    @Override
+    public void isSpendAccepted(boolean isAccept) {
+        if(isAccept){
+            UserProfileActivity.newIntent(this,username);
+        }
+        else{
+            BusStation.getBus().post("notAccept");
+        }
+    }
+
     private void initPager(int textCode,ArrayList<String> names) {
         mPagerAdapter = new MyPagerAdapter(getSupportFragmentManager(),textCode,names);
         vpMain.setAdapter(mPagerAdapter);
@@ -233,6 +256,8 @@ public class MainActivity extends BaseActivity {
     }
 
 
+
+
     private class MyPagerAdapter extends FragmentPagerAdapter {
         int textCode;
 
@@ -250,7 +275,7 @@ public class MainActivity extends BaseActivity {
                 case 0:
                     return SearchFragment.newInstance(textCode,names);
                 case 1:
-                    return new GetCoinFragment();
+                    return GetCoinFragment.newInstance(textCode);
                 default:
                     return new Fragment();
             }

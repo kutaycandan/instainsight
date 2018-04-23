@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class IIInvoice implements Serializable {
     String DateAdded;
     String ServiceDueDate;
-    String InstaUsername;
     String Code;
     String Target_InstaUser; //Order Features
     ArrayList<IIFeatureOrder> IIFeatureOrders;
@@ -25,14 +24,6 @@ public class IIInvoice implements Serializable {
 
     public void setServiceDueDate(String serviceDueDate) {
         ServiceDueDate = serviceDueDate;
-    }
-
-    public String getInstaUsername() {
-        return InstaUsername;
-    }
-
-    public void setInstaUsername(String instaUsername) {
-        InstaUsername = instaUsername;
     }
 
     public String getCode() {

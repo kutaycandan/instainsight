@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@color/insta_blue">
     <LinearLayout
@@ -20,6 +20,7 @@
                 android:background="@drawable/ic_coin"
                 android:layout_gravity="center_vertical"/>
             <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                android:id="@+id/tv_my_stalks"
                 android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,8 +37,77 @@
             android:textSize="20sp"
             android:textColor="@color/white"/>
 
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/background_get_coin_column"
+                android:orientation="vertical"
+                >
 
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/background_get_coin_column"
+                android:orientation="vertical"
+                >
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/background_get_coin_column"
+                android:orientation="vertical"
+                >
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/background_get_coin_row">
+
+        </LinearLayout>
 
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:text="Done?"
+            android:layout_gravity="center"/>
+        <com.kutaycandan.instainsight.widget.textview.HurmeRegularObliqueTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:text="Swipe Back."
+            android:layout_gravity="center"/>
+    </LinearLayout>
 
-</ScrollView>
+</RelativeLayout>

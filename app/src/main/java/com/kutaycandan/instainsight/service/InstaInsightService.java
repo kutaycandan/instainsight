@@ -29,7 +29,7 @@ public interface InstaInsightService {
     Call<BaseResponse<OrderFeaturesResponse>> orderFeaturesRequest(@Body OrderFeaturesRequest request);
 
     @POST("api/Values/GetFeatureStates")
-    Call<BaseResponse<ArrayList<String>>> getFeatureStatesRequest(@Body GetFeatureStatesRequest request);
+    Call<BaseResponse<ArrayList<ArrayList<String>>>> getFeatureStatesRequest(@Body GetFeatureStatesRequest request);
 
     @POST("api/Values/GetFeatureData")
     Call<BaseResponse<BaseResponse<InstaUserProfileData>>> getInstaUserProfileDataRequest(@Body GetFeatureDataRequest request);

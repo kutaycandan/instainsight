@@ -11,7 +11,7 @@ public class IIUser implements Serializable {
     String UserCode;
     int Amount;
     String PermaCode;
-    ArrayList<IIInvoice> IIInvoices;
+    ArrayList<IIInvoices> IIInvoices;
 
     public String getPermaCode() {
         return PermaCode;
@@ -21,11 +21,11 @@ public class IIUser implements Serializable {
         PermaCode = permaCode;
     }
 
-    public ArrayList<IIInvoice> getIIInvoices() {
+    public ArrayList<IIInvoices> getIIInvoices() {
         return IIInvoices;
     }
 
-    public void setIIInvoices(ArrayList<IIInvoice> IIInvoices) {
+    public void setIIInvoices(ArrayList<IIInvoices> IIInvoices) {
         this.IIInvoices = IIInvoices;
     }
 
