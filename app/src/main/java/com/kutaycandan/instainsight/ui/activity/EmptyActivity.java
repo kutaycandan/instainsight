@@ -1,5 +1,6 @@
 package com.kutaycandan.instainsight.ui.activity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -46,6 +47,7 @@ public class EmptyActivity extends BaseActivity {
         set1.setColor(getResources().getColor(R.color.text_black));
         set1.setLineWidth(2f);
         set1.setValueTextColor(getResources().getColor(R.color.chart_red));
+        set1.setValueTypeface(Typeface.createFromAsset(getResources().getAssets(), "hurme_semi_bold.otf"));
         set1.setCircleColor(getResources().getColor(R.color.text_black));
         set1.setCircleColorHole(getResources().getColor(R.color.text_black));
         set1.setValueFormatter(new ValuesFormatter());
@@ -61,7 +63,9 @@ public class EmptyActivity extends BaseActivity {
         mChart.getAxisRight().setEnabled(false);
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setAxisMinimum(0);
-
+        leftAxis.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "hurme_bold.otf"));
+        leftAxis.setTextColor(getResources().getColor(R.color.text_black));
+        leftAxis.setTextSize(14f);
         Description description = new Description();
         description.setText("");
         mChart.setDescription(description);
