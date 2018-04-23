@@ -131,6 +131,8 @@ public class SearchFragment extends Fragment {
             setSpendCoinFragment();
         } else if (message.equals("notAccept")) {
             setSearchBarFragment();
+        }else if (message.equals("showSearchBar")) {
+            setSearchBarFragment();
         }
 
     }

@@ -221,6 +221,7 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
     @Override
     public void isSpendAccepted(boolean isAccept) {
         if(isAccept){
+            BusStation.getBus().post("showSearchBar");
             UserProfileActivity.newIntent(this,username);
         }
         else{

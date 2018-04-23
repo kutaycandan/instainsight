@@ -56,6 +56,7 @@ public class UserProfileActivity extends BaseActivity {
     InstaInsightService instaInsightService;
     ArrayList<IIFeatureOrder> iiFeatureOrders;
     int amount;
+    Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +66,7 @@ public class UserProfileActivity extends BaseActivity {
         showDialog();
         Bundle extras = getIntent().getExtras();
         instaInsightService = RestApi.getInstance(this);
-        amount=(int)SharedPrefsHelper.getInstance().get(SharedPrefsConstant.AMOUNT_CODE)-1;
-        SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE,amount);
-        tvCoinAmount.setText(String.valueOf(amount));
+        activity=this;
         if (extras != null) {
             username = extras.getString(USERNAME_CODE);
             orderFeaturesRequest();
@@ -93,7 +92,9 @@ public class UserProfileActivity extends BaseActivity {
                     }
                     else{
                         if(response.body().getExceptionMessage().equals("04-PrivateAccountException")){
-                            orderFeaturesRequest();
+                            SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE,amount+1);
+                            finish();
+                            PrivateActivity.newIntent(activity);
                         }
                     }
                 }
@@ -170,6 +171,9 @@ public class UserProfileActivity extends BaseActivity {
         return "";
     }
     private void setInstaUserInfos(InstaUserProfileData instaUserInfos){
+        amount=(int)SharedPrefsHelper.getInstance().get(SharedPrefsConstant.AMOUNT_CODE)-1;
+        SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE,amount);
+        tvCoinAmount.setText(String.valueOf(amount));
         Picasso.with(this)
                 .load(instaUserInfos.getProfilePicture())
                 .into(civProfileImage);
