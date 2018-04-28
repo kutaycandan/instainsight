@@ -69,14 +69,14 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                android:text="Sorry, this profile is too popular" />
+                android:text="Sorry, you can’t stalk this profile" />
 
             <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                android:text="to be stalked." />
+                android:text="as it is private." />
         </LinearLayout>
 
         <LinearLayout

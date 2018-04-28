@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Like Trend for the last 7 posts"
+        android:textColor="@color/insta_blue"
+        android:textSize="18sp"
+        />
+    <com.github.mikephil.charting.charts.LineChart
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/chart1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

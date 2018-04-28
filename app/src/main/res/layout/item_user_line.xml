@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="66dp">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/user_item_border_color"
+        android:layout_alignParentBottom="true"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_profile_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp" />
+
+    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+        android:id="@+id/tv_fullname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="25sp"
+        android:layout_toRightOf="@+id/civ_profile_image"
+        android:textColor="@color/text_black"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:layout_width="40dp"
+        android:layout_height="18dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="41dp">
+        <RelativeLayout
+            android:id="@+id/rl_private"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@drawable/background_lock_icon"
+            android:layout_centerHorizontal="true">
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_lock" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_public"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_blue_corner">
+            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:text="Stalk"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

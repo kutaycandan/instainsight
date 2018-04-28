@@ -7,6 +7,24 @@ public class InstaUserModel implements Serializable {
     String ProfilePicture;
     String UserName;
     String FullName;
+    String Type;
+    String TimeTabel;
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
+    }
+
+    public String getTimeTabel() {
+        return TimeTabel;
+    }
+
+    public void setTimeTabel(String timeTabel) {
+        TimeTabel = timeTabel;
+    }
 
     public String getPk() {
         return Pk;

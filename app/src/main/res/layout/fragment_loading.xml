@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please wait,"
+        android:textColor="@color/insta_blue"
+        android:textSize="18sp"
+        />
+    <com.kutaycandan.instainsight.widget.textview.HurmeSemiBoldObliqueTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/insta_blue"
+        android:textSize="18sp"
+        android:text="we're fetching the results."/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_marginTop="40dp"
+        android:id="@+id/gif_loader"
+        android:background="@drawable/gif_loading_blue"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+</LinearLayout>

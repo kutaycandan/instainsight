@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -56,6 +57,14 @@ public class SearchBarFragment extends Fragment {
         unbinder.unbind();
     }
 
+    @OnClick(R.id.iv_search_bar)
+    public void openKeyboard(){
+        etUsername.requestFocus();
+        etUsername.setSelection(etUsername.getText().toString().length());
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -68,6 +77,9 @@ public class SearchBarFragment extends Fragment {
 
     @OnClick(R.id.ll_go)
     public void onViewClicked() {
-        listener.askUserToSpendCoin(etUsername.getText().toString());
+        if(etUsername.getText().toString().length()>0){
+            listener.askUserToSpendCoin(etUsername.getText().toString());
+        }
+
     }
 }

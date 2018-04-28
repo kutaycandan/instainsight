@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/background_blue_corner"
+    android:gravity="center_horizontal"
+    android:minWidth="350dp">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_warning_white"
+        android:layout_marginTop="20dp"/>
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:text="You will spend "/>
+        <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:text="1 Stalk Coin"/>
+    </LinearLayout>
+    <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:text="to view analytics of this profile."/>
+    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:text="Are you sure?"/>
+    <View
+        android:layout_marginTop="42dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/white"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:gravity="center">
+        <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="Not now"/>
+        <View
+            android:layout_width="0.3dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"/>
+        <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            android:id="@+id/tv_accept"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="Show me"/>
+
+    </LinearLayout>
+
+</LinearLayout>
