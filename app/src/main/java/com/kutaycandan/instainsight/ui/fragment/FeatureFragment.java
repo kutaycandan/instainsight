@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.kutaycandan.instainsight.R;
 import com.kutaycandan.instainsight.model.InstaUserModel;
+import com.kutaycandan.instainsight.model.InstaUserModelFollowerCount;
+import com.kutaycandan.instainsight.model.InstaUserModelLikeCount;
 import com.kutaycandan.instainsight.ui.activity.UserProfileActivity;
 import com.kutaycandan.instainsight.ui.adapter.UserInfoRecyclerViewAdapter;
 import com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView;
@@ -27,7 +29,9 @@ public class FeatureFragment extends Fragment {
     LinearLayoutManager mLayoutManager;
     RecyclerView.Adapter mAdapter;
     Bundle bundle;
-    ArrayList<InstaUserModel> mDataSet;
+    ArrayList<InstaUserModel> mDataSet1;
+    ArrayList<InstaUserModelLikeCount> mDataSet2;
+    ArrayList<InstaUserModelFollowerCount> mDataSet3;
 
 
     Unbinder unbinder;
@@ -35,6 +39,8 @@ public class FeatureFragment extends Fragment {
     HurmeBoldTextView tvFeatureName;
     @BindView(R.id.rv_user_info)
     RecyclerView rvUserInfo;
+
+
 
     @Nullable
     @Override
@@ -44,17 +50,29 @@ public class FeatureFragment extends Fragment {
         bundle = getArguments();
         if(bundle!=null){
             tvFeatureName.setText(bundle.getString("featureName",""));
-            mDataSet = ((UserProfileActivity)getActivity()).getUserList();
-            RVInit();
+            int type = bundle.getInt("type");
+            RVInit(type);
         }
         return view;
     }
 
-    private void RVInit(){
+    private void RVInit(int type){
         rvUserInfo.setHasFixedSize(true);
+        //mAdapter.setHasStableIds(true);
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rvUserInfo.setLayoutManager(mLayoutManager);
-        mAdapter = new UserInfoRecyclerViewAdapter(mDataSet, getActivity());
+        if(type==1){
+            mDataSet1 = ((UserProfileActivity)getActivity()).getUserList();
+            mAdapter = new UserInfoRecyclerViewAdapter(mDataSet1,null,null, getActivity());
+        }
+        else if(type==2){
+            mDataSet2 = ((UserProfileActivity)getActivity()).getUserListWithLikeCount();
+            mAdapter = new UserInfoRecyclerViewAdapter(null,mDataSet2,null, getActivity());
+        }
+        else{
+            mDataSet3 = ((UserProfileActivity)getActivity()).getUserListWithFollowerCount();
+            mAdapter = new UserInfoRecyclerViewAdapter(null,null,mDataSet3, getActivity());
+        }
         rvUserInfo.setAdapter(mAdapter);
     }
 

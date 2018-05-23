@@ -3,6 +3,7 @@ package com.kutaycandan.instainsight.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.widget.LinearLayout;
 
 import com.kutaycandan.instainsight.R;
@@ -31,8 +32,20 @@ public class PrivateActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_private);
         ButterKnife.bind(this);
-        tvMyStalks.setText(tvMyStalks.getText().toString() + SharedPrefsHelper.getInstance().get(SharedPrefsConstant.AMOUNT_CODE));
+        getStalkBalance();
+        new CountDownTimer(4000,1000){
+            @Override
+            public void onTick(long millisUntilFinished) {
+                tvMyStalks.setText("My stalks: " + SharedPrefsHelper.getInstance().get(SharedPrefsConstant.AMOUNT_CODE));
 
+            }
+            @Override
+            public void onFinish() {
+                tvMyStalks.setText("My stalks: " + SharedPrefsHelper.getInstance().get(SharedPrefsConstant.AMOUNT_CODE));
+
+            }
+        }.start();
+        tvMyStalks.setText("My stalks: " + SharedPrefsHelper.getInstance().get(SharedPrefsConstant.AMOUNT_CODE));
     }
 
     public static void newIntent(Activity activity) {

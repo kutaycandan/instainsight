@@ -9,8 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.kutaycandan.instainsight.R;
 import com.kutaycandan.instainsight.model.InstaUserModel;
+import com.kutaycandan.instainsight.model.InstaUserModelFollowerCount;
+import com.kutaycandan.instainsight.model.InstaUserModelLikeCount;
 import com.kutaycandan.instainsight.model.InstaUserProfileData;
 import com.kutaycandan.instainsight.ui.activity.UserProfileActivity;
 import com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView;
@@ -24,10 +28,35 @@ public class UserInfoRecyclerViewAdapter extends RecyclerView.Adapter<UserInfoRe
     ArrayList<InstaUserModel> mDataSet;
     Context context;
 
-    public UserInfoRecyclerViewAdapter(ArrayList<InstaUserModel> mDataSet, Context context){
-        this.mDataSet=mDataSet;
+    public UserInfoRecyclerViewAdapter(ArrayList<InstaUserModel> mDataSet,ArrayList<InstaUserModelLikeCount> mDataSet2,ArrayList<InstaUserModelFollowerCount> mDataSet3, Context context){
+        if(mDataSet!=null){
+            this.mDataSet=mDataSet;
+        }
+        else if(mDataSet2!=null){
+            this.mDataSet=new ArrayList<>();
+            for (int i = 0; i <mDataSet2.size() ; i++) {
+                InstaUserModel model = new InstaUserModel();
+                model.setFullName(mDataSet2.get(i).getFullName());
+                model.setType(mDataSet2.get(i).getType());
+                model.setUserName(mDataSet2.get(i).getUserName());
+                model.setProfilePicture(mDataSet2.get(i).getProfilePicture());
+                this.mDataSet.add(model);
+            }
+        }
+        else if(mDataSet3!=null){
+            this.mDataSet=new ArrayList<>();
+            for (int i = 0; i <mDataSet3.size() ; i++) {
+                InstaUserModel model = new InstaUserModel();
+                model.setFullName(mDataSet3.get(i).getFullName());
+                model.setType(mDataSet3.get(i).getType());
+                model.setUserName(mDataSet3.get(i).getUserName());
+                model.setProfilePicture(mDataSet3.get(i).getProfilePicture());
+                this.mDataSet.add(model);
+            }
+        }
         this.context=context;
     }
+
 
     @NonNull
     @Override
@@ -42,7 +71,12 @@ public class UserInfoRecyclerViewAdapter extends RecyclerView.Adapter<UserInfoRe
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((UserProfileActivity) context).searchUserInRV(mDataSet.get(position).getUserName());
+                if(mDataSet.get(position).getType().equals("public")){
+                    ((UserProfileActivity) context).searchUserInRV(mDataSet.get(position).getUserName());
+                }else{
+                    Toast.makeText(context, "Sorry, you can’t stalk this profile" +
+                            " as it is private.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         holder.tvFullname.setText(mDataSet.get(position).getFullName());
@@ -66,6 +100,11 @@ public class UserInfoRecyclerViewAdapter extends RecyclerView.Adapter<UserInfoRe
     @Override
     public int getItemCount() {
         return mDataSet.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

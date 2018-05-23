@@ -63,11 +63,26 @@
                 android:text="Recent Searches"
                 android:textColor="@color/white"
                 />
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_recent_users"
+            <LinearLayout
+                android:id="@+id/ll_container_parent"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                android:layout_height="wrap_content">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:id="@+id/ll_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+
             <com.kutaycandan.instainsight.widget.textview.HurmeRegularObliqueTextView
+                android:id="@+id/tv_clear_searches"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -78,6 +93,7 @@
         </LinearLayout>
 
     </RelativeLayout>
+
 
 
 </LinearLayout>

@@ -15,6 +15,8 @@ import com.kutaycandan.instainsight.constants.ServiceConstant;
 import com.kutaycandan.instainsight.constants.SharedPrefsConstant;
 import com.kutaycandan.instainsight.model.IIFeatureOrder;
 import com.kutaycandan.instainsight.model.InstaUserModel;
+import com.kutaycandan.instainsight.model.InstaUserModelFollowerCount;
+import com.kutaycandan.instainsight.model.InstaUserModelLikeCount;
 import com.kutaycandan.instainsight.model.InstaUserProfileData;
 import com.kutaycandan.instainsight.model.request.GetFeatureDataRequest;
 import com.kutaycandan.instainsight.model.request.GetFeatureStatesRequest;
@@ -28,6 +30,7 @@ import com.kutaycandan.instainsight.ui.fragment.ButtonFragment;
 import com.kutaycandan.instainsight.ui.fragment.ChartFragment;
 import com.kutaycandan.instainsight.ui.fragment.FeatureFragment;
 import com.kutaycandan.instainsight.ui.fragment.LoadingFragment;
+import com.kutaycandan.instainsight.ui.fragment.StalkCountFragment;
 import com.kutaycandan.instainsight.util.SharedPrefsHelper;
 import com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView;
 import com.squareup.picasso.Picasso;
@@ -71,12 +74,15 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
     FragmentManager manager;
     String buttonName;
     ArrayList<InstaUserModel> instaUserModelArrayList;
+    ArrayList<InstaUserModelLikeCount> instaUserModelLikeCountArrayList;
+    ArrayList<InstaUserModelFollowerCount> instaUserModelFollowerCountArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         ButterKnife.bind(this);
+        fragmentType=1;
         showDialog();
         Bundle extras = getIntent().getExtras();
         instaInsightService = RestApi.getInstance(this);
@@ -115,6 +121,35 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
     }
     private void getFeatureFragment(String s){
         Bundle bundle = new Bundle();
+        int type=1;
+        bundle.putInt("type",type);
+        bundle.putString("featureName", s);
+        FeatureFragment ff = new FeatureFragment();
+        ff.setArguments(bundle);
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
+        transaction.replace(R.id.fl_container,ff);
+        transaction.commit();
+        fragmentType=3;
+    }
+
+    private void getFeatureFragmentWithLikeCount(String s){
+        Bundle bundle = new Bundle();
+        int type=2;
+        bundle.putInt("type",type);
+        bundle.putString("featureName", s);
+        FeatureFragment ff = new FeatureFragment();
+        ff.setArguments(bundle);
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
+        transaction.replace(R.id.fl_container,ff);
+        transaction.commit();
+        fragmentType=3;
+    }
+    private void getFeatureFragmentWithFollowerCount(String s){
+        Bundle bundle = new Bundle();
+        int type=3;
+        bundle.putInt("type",type);
         bundle.putString("featureName", s);
         FeatureFragment ff = new FeatureFragment();
         ff.setArguments(bundle);
@@ -133,6 +168,18 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
         manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
         transaction.replace(R.id.fl_container,cf);
+        transaction.commit();
+        fragmentType=3;
+    }
+
+    private void getStalkCountFragment(Integer stalkCount){
+        Bundle bundle = new Bundle();
+        bundle.putInt("stalkCount", stalkCount);
+        StalkCountFragment scf = new StalkCountFragment();
+        scf.setArguments(bundle);
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
+        transaction.replace(R.id.fl_container,scf);
         transaction.commit();
         fragmentType=3;
     }
@@ -158,7 +205,7 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
                     }
                     else{
                         if(response.body().getExceptionMessage().equals("04-PrivateAccountException")){
-                            SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE,amount+1);
+                            SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE,amount);
                             finish();
                             PrivateActivity.newIntent(activity);
                         }
@@ -200,6 +247,15 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
                             }
                             if(code==3){
                                 getChart(GUID,code);
+                            }
+                            if(code==4){
+                                getStalkCount(GUID,code);
+                            }
+                            if(code==5){
+                                getFeaturesWithLikeCount(GUID,code);
+                            }
+                            if(code==6){
+                                getFeaturesWithFollowerCount(GUID,code);
                             }
                         }
                         else{
@@ -245,6 +301,12 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
     public ArrayList<InstaUserModel> getUserList(){
         return instaUserModelArrayList;
     }
+    public ArrayList<InstaUserModelLikeCount> getUserListWithLikeCount(){
+        return instaUserModelLikeCountArrayList;
+    }
+    public ArrayList<InstaUserModelFollowerCount> getUserListWithFollowerCount(){
+        return instaUserModelFollowerCountArrayList;
+    }
 
     private String getGUID(String name){
         if(iiFeatureOrders==null){
@@ -258,7 +320,7 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
         return "";
     }
     private void setInstaUserInfos(InstaUserProfileData instaUserInfos){
-        amount=(int)SharedPrefsHelper.getInstance().get(SharedPrefsConstant.AMOUNT_CODE)-1;
+        amount=(int)SharedPrefsHelper.getInstance().get(SharedPrefsConstant.AMOUNT_CODE);
         SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE,amount);
         tvCoinAmount.setText(String.valueOf(amount));
         Picasso.with(this)
@@ -318,27 +380,30 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
 
             }
         });
+    }
 
-
-        /*Call<BaseResponse<BaseResponse<ArrayList<InstaUserModel>>>> call =  instaInsightService.getFeatureDataRequest(getFeatureDataRequest);
-        call.enqueue(new Callback<BaseResponse<BaseResponse<ArrayList<InstaUserModel>>>>() {
+    private void getStalkCount(final String GUID,final int code){
+        GetFeatureDataRequest getFeatureDataRequest = new GetFeatureDataRequest();
+        getFeatureDataRequest.setToken((String)SharedPrefsHelper.getInstance().get(SharedPrefsConstant.TOKEN_CODE));
+        getFeatureDataRequest.setIIFeatureOrderGuid(GUID);
+        Call<BaseResponse<BaseResponse<Integer>>> call = instaInsightService.getStalkedCountDataRequest(getFeatureDataRequest);
+        call.enqueue(new Callback<BaseResponse<BaseResponse<Integer>>>() {
             @Override
-            public void onResponse(Call<BaseResponse<BaseResponse<ArrayList<InstaUserModel>>>> call, Response<BaseResponse<BaseResponse<ArrayList<InstaUserModel>>>> response) {
+            public void onResponse(Call<BaseResponse<BaseResponse<Integer>>> call, Response<BaseResponse<BaseResponse<Integer>>> response) {
                 if(response.isSuccessful()){
                     if(response.body().isSuccess()){
                         if(response.body().getData().isSuccess()){
-                            instaUserModelArrayList = response.body().getData().getData();
-                            getFeatureFragment(buttonName);
+                            getStalkCountFragment(response.body().getData().getData());
                         }
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<BaseResponse<BaseResponse<ArrayList<InstaUserModel>>>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<BaseResponse<Integer>>> call, Throwable t) {
 
             }
-        });*/
+        });
     }
 
     private void getFeatures(final String GUID,final int code){
@@ -365,6 +430,55 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
             }
         });
     }
+    private void getFeaturesWithFollowerCount(final String GUID,final int code){
+        GetFeatureDataRequest getFeatureDataRequest = new GetFeatureDataRequest();
+        getFeatureDataRequest.setToken((String)SharedPrefsHelper.getInstance().get(SharedPrefsConstant.TOKEN_CODE));
+        getFeatureDataRequest.setIIFeatureOrderGuid(GUID);
+        Call<BaseResponse<BaseResponse<ArrayList<InstaUserModelFollowerCount>>>> call =  instaInsightService.getPopularFollowersRequest(getFeatureDataRequest);
+        call.enqueue(new Callback<BaseResponse<BaseResponse<ArrayList<InstaUserModelFollowerCount>>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<BaseResponse<ArrayList<InstaUserModelFollowerCount>>>> call, Response<BaseResponse<BaseResponse<ArrayList<InstaUserModelFollowerCount>>>> response) {
+                if(response.isSuccessful()){
+                    if(response.body().isSuccess()){
+                        if(response.body().getData().isSuccess()){
+                            instaUserModelFollowerCountArrayList = response.body().getData().getData();
+                            getFeatureFragmentWithFollowerCount(buttonName);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<BaseResponse<ArrayList<InstaUserModelFollowerCount>>>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getFeaturesWithLikeCount(final String GUID,final int code){
+        GetFeatureDataRequest getFeatureDataRequest = new GetFeatureDataRequest();
+        getFeatureDataRequest.setToken((String)SharedPrefsHelper.getInstance().get(SharedPrefsConstant.TOKEN_CODE));
+        getFeatureDataRequest.setIIFeatureOrderGuid(GUID);
+        Call<BaseResponse<BaseResponse<ArrayList<InstaUserModelLikeCount>>>> call =  instaInsightService.getLikeCountRequest(getFeatureDataRequest);
+        call.enqueue(new Callback<BaseResponse<BaseResponse<ArrayList<InstaUserModelLikeCount>>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<BaseResponse<ArrayList<InstaUserModelLikeCount>>>> call, Response<BaseResponse<BaseResponse<ArrayList<InstaUserModelLikeCount>>>> response) {
+                if(response.isSuccessful()){
+                    if(response.body().isSuccess()){
+                        if(response.body().getData().isSuccess()){
+                            instaUserModelLikeCountArrayList = response.body().getData().getData();
+                            getFeatureFragmentWithLikeCount(buttonName);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<BaseResponse<ArrayList<InstaUserModelLikeCount>>>> call, Throwable t) {
+
+            }
+        });
+    }
 
 
     public void searchUserInRV(String s){
@@ -383,22 +497,34 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
 
     @Override
     public void nonFollowersClicked() {
-
+        getLoadingFragment();
+        buttonName = "Non Followers";
+        String GUID = getGUID(ServiceConstant.NON_FOLLOWERS);
+        getFeatureStatesRequest(GUID,2);
     }
 
     @Override
     public void profileStalkersClicked() {
-
+        getLoadingFragment();
+        buttonName = "Profile Stalkers";
+        String GUID = getGUID(ServiceConstant.PROFILE_STALKERS);
+        getFeatureStatesRequest(GUID,2);
     }
 
     @Override
     public void nonFollowingClicked() {
-
+        getLoadingFragment();
+        buttonName = "Non Following";
+        String GUID = getGUID(ServiceConstant.NON_FOLLOWING);
+        getFeatureStatesRequest(GUID,2);
     }
 
     @Override
     public void topLikersClicked() {
-
+        getLoadingFragment();
+        buttonName = "Top Likers";
+        String GUID = getGUID(ServiceConstant.TOP_LIKERS);
+        getFeatureStatesRequest(GUID,5);
     }
 
     @Override
@@ -411,17 +537,26 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
 
     @Override
     public void mostLikesSentClicked() {
-
+        getLoadingFragment();
+        buttonName = "Most Likes Sent";
+        String GUID = getGUID(ServiceConstant.MOST_LIKES_SENT);
+        getFeatureStatesRequest(GUID,5);
     }
 
     @Override
     public void newFollowingClicked() {
-
+        getLoadingFragment();
+        buttonName = "New Following";
+        String GUID = getGUID(ServiceConstant.NEW_FOLLOWING);
+        getFeatureStatesRequest(GUID,2);
     }
 
     @Override
     public void popularfollowersClicked() {
-
+        getLoadingFragment();
+        buttonName = "Popular Followers";
+        String GUID = getGUID(ServiceConstant.POPULAR_FOLLOWERS);
+        getFeatureStatesRequest(GUID,6);
     }
 
     @Override
@@ -433,6 +568,8 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
 
     @Override
     public void stalkCountCliked() {
-
+        getLoadingFragment();
+        String GUID = getGUID(ServiceConstant.STALKED_COUNT);
+        getFeatureStatesRequest(GUID,4);
     }
 }

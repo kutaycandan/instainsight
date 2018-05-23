@@ -7,11 +7,13 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -83,17 +85,20 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
         ButterKnife.bind(this);
         instaInsightService = RestApi.getInstance(this);
         isConnected=false;
+
+        //SharedPrefsHelper.getInstance().clearAllData();
         if(Utils.isNetworkAvailable(this)){
             logIn();
         }
         else{
 
             ivSwipe.setVisibility(View.GONE);
-            initPager(-1,null);
+            initPager(-1);
             animation(tvInsta);
         }
     }
-
+    //7985b54f6317e41a
+    //7985b54f6317e41a
 
 
     private void goInternetWarning(){
@@ -157,7 +162,7 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
                         SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE, response.body().getData().getIIUser().getAmount());
                         animation(tvInsta);
                         isConnected=true;
-                        initPager(1,null);
+                        initPager(1);
                     }
                 }
             }
@@ -188,14 +193,9 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
                         SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE, response.body().getData().getIIUser().getAmount());
                         if (response.body().getData().getIIUser().getIIInvoices().size() > 0) {
                             iiInvoices = response.body().getData().getIIUser().getIIInvoices();
-                            for (int i = 0; i <iiInvoices.size() ; i++) {
-                                names.add(iiInvoices.get(i).getInstaUsername());
-                            }
-                            initPager(2,names);
                         }
-                        else{
-                            initPager(1,null);
-                        }
+                        initPager(1);
+
 
                         animation(tvInsta);
                         isConnected=true;
@@ -212,10 +212,23 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
 
     }
 
+    public ArrayList<IIInvoices> getIiInvoices() {
+        return iiInvoices;
+    }
+
     @Override
     public void askUserToSpendCoin(String username) {
         this.username=username;
         BusStation.getBus().post("showSpendCoin");
+    }
+
+    public void endDemo(){
+        UserProfileActivity.newIntent(this,"instainsightapp");
+
+    }
+
+    public void startDemo(){
+        BusStation.getBus().post("showDemo");
     }
 
     @Override
@@ -229,8 +242,8 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
         }
     }
 
-    private void initPager(int textCode,ArrayList<String> names) {
-        mPagerAdapter = new MyPagerAdapter(getSupportFragmentManager(),textCode,names);
+    private void initPager(int textCode) {
+        mPagerAdapter = new MyPagerAdapter(getSupportFragmentManager(),textCode);
         vpMain.setAdapter(mPagerAdapter);
         vpMain.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -262,11 +275,11 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
     private class MyPagerAdapter extends FragmentPagerAdapter {
         int textCode;
 
-        ArrayList<String> names;
-        public MyPagerAdapter(FragmentManager fm,int textCode, ArrayList<String> names) {
+
+        public MyPagerAdapter(FragmentManager fm,int textCode) {
             super(fm);
             this.textCode=textCode;
-            this.names=names;
+
         }
 
 
@@ -274,7 +287,7 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
         public Fragment getItem(int pos) {
             switch (pos) {
                 case 0:
-                    return SearchFragment.newInstance(textCode,names);
+                    return SearchFragment.newInstance(textCode);
                 case 1:
                     return GetCoinFragment.newInstance(textCode);
                 default:

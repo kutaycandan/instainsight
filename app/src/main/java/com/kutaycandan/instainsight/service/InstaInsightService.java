@@ -1,9 +1,12 @@
 package com.kutaycandan.instainsight.service;
 
 import com.kutaycandan.instainsight.model.InstaUserModel;
+import com.kutaycandan.instainsight.model.InstaUserModelFollowerCount;
+import com.kutaycandan.instainsight.model.InstaUserModelLikeCount;
 import com.kutaycandan.instainsight.model.InstaUserProfileData;
 import com.kutaycandan.instainsight.model.request.GetFeatureDataRequest;
 import com.kutaycandan.instainsight.model.request.GetFeatureStatesRequest;
+import com.kutaycandan.instainsight.model.request.GetStalkBalanceRequest;
 import com.kutaycandan.instainsight.model.request.LoginByCookieRequest;
 import com.kutaycandan.instainsight.model.request.OrderFeaturesRequest;
 import com.kutaycandan.instainsight.model.request.RegisterRequest;
@@ -38,10 +41,19 @@ public interface InstaInsightService {
     Call<BaseResponse<BaseResponse<ArrayList<InstaUserModel>>>> getFeatureDataRequest(@Body GetFeatureDataRequest request);
 
     @POST("api/Values/GetFeatureData")
+    Call<BaseResponse<BaseResponse<ArrayList<InstaUserModelFollowerCount>>>> getPopularFollowersRequest(@Body GetFeatureDataRequest request);
+
+    @POST("api/Values/GetFeatureData")
+    Call<BaseResponse<BaseResponse<ArrayList<InstaUserModelLikeCount>>>> getLikeCountRequest(@Body GetFeatureDataRequest request);
+
+    @POST("api/Values/GetFeatureData")
     Call<BaseResponse<BaseResponse<ArrayList<Integer>>>> getLikeTrendDataRequest(@Body GetFeatureDataRequest request);
 
     @POST("api/Values/GetFeatureData")
     Call<BaseResponse<BaseResponse<Integer>>> getStalkedCountDataRequest(@Body GetFeatureDataRequest request);
+
+    @POST("api/Values/GetStalkBalance")
+    Call<BaseResponse<Integer>> getStalkBalance(@Body GetStalkBalanceRequest request);
 
 
 }

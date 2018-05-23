@@ -61,11 +61,11 @@
                     android:textColor="@color/white"
                     android:text="3 Stalk"/>
                 <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:text="Coins"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:text="Coins"/>
                 <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
                     android:id="@+id/tv_3coin"
                     android:layout_marginTop="40dp"
@@ -138,51 +138,51 @@
 
             </LinearLayout>
             <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:background="@drawable/background_get_coin_column"
-            android:orientation="vertical"
-            >
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:text="30 Stalk"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:text="Coins"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
-                android:id="@+id/tv_30coin"
-
-                android:layout_marginTop="40dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="17sp"
-                android:textColor="@color/white"
-                android:text="24,99 TRY"/>
-            <LinearLayout
-                android:id="@+id/btn_30coin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:background="@drawable/background_purchase">
+                android:background="@drawable/background_get_coin_column"
+                android:orientation="vertical"
+                >
                 <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Purchase"
-                    android:textSize="11sp"
-                    android:textColor="@color/insta_blue" />
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:text="30 Stalk"/>
+                <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:text="Coins"/>
+                <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                    android:id="@+id/tv_30coin"
+
+                    android:layout_marginTop="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@color/white"
+                    android:text="24,99 TRY"/>
+                <LinearLayout
+                    android:id="@+id/btn_30coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:gravity="center"
+                    android:background="@drawable/background_purchase">
+                    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Purchase"
+                        android:textSize="11sp"
+                        android:textColor="@color/insta_blue" />
+                </LinearLayout>
+
+
             </LinearLayout>
-
-
-        </LinearLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -227,28 +227,6 @@
         </LinearLayout>
 
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_footer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical">
-        <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:text="Done?"
-            android:layout_gravity="center"/>
-        <com.kutaycandan.instainsight.widget.textview.HurmeRegularObliqueTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:text="Swipe Back."
-            android:layout_gravity="center"/>
-    </LinearLayout>
+
 
 </RelativeLayout>

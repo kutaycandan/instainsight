@@ -1,6 +1,8 @@
 package com.kutaycandan.instainsight.ui.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,11 +10,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.kutaycandan.instainsight.R;
 import com.kutaycandan.instainsight.constants.SharedPrefsConstant;
+import com.kutaycandan.instainsight.ui.activity.MainActivity;
 import com.kutaycandan.instainsight.util.BusStation;
 import com.kutaycandan.instainsight.util.SharedPrefsHelper;
 import com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView;
@@ -23,6 +28,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class SearchFragment extends Fragment {
@@ -42,6 +48,8 @@ public class SearchFragment extends Fragment {
     String username;
     @BindView(R.id.tv_my_stalks)
     HurmeBoldTextView tvMyStalks;
+    @BindView(R.id.rl_main)
+    RelativeLayout rlMain;
 
     @Nullable
     @Override
@@ -49,6 +57,7 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         unbinder = ButterKnife.bind(this, view);
         Bundle bundle = getArguments();
+
         if (bundle != null) {
             if (bundle.getInt("textCode") == -1) {
                 llFooter.setVisibility(View.GONE);
@@ -56,22 +65,37 @@ public class SearchFragment extends Fragment {
                 setInternetConnectionErrorFragment();
             } else if (bundle.getInt("textCode") == 1) {
                 tvMyStalks.setText(tvMyStalks.getText().toString() + SharedPrefsHelper.getInstance().get(SharedPrefsConstant.AMOUNT_CODE));
-
-                setSearchBarFragment();
-            } else if (bundle.getInt("textCode") == 2) {
-                tvMyStalks.setText(tvMyStalks.getText().toString() + SharedPrefsHelper.getInstance().get(SharedPrefsConstant.AMOUNT_CODE));
                 setSearchBarFragment();
             }
-
-
         }
         return view;
+    }
+
+    @OnClick(R.id.rl_main)
+    public void hideKeyboard(){
+        BusStation.getBus().post("hide");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+    @OnClick(R.id.btn_try_free)
+    public void tryFreeClicked() {
+        ((MainActivity)getActivity()).startDemo();
+        new CountDownTimer(600,100){
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                ((MainActivity)getActivity()).endDemo();
+            }
+        }.start();
     }
 
     private void setSearchBarFragment() {
@@ -84,14 +108,14 @@ public class SearchFragment extends Fragment {
 
         transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fl_container, sbf);
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 
     private void setInternetConnectionErrorFragment() {
         InternetWarningFragment iwf = new InternetWarningFragment();
         transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fl_container, iwf);
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 
     private void setSpendCoinFragment() {
@@ -99,15 +123,14 @@ public class SearchFragment extends Fragment {
         transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fl_container, scf);
         //transaction.addToBackStack("");
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 
-    public static SearchFragment newInstance(int textCode, ArrayList<String> names) {
+    public static SearchFragment newInstance(int textCode) {
 
         SearchFragment f = new SearchFragment();
         Bundle b = new Bundle();
         b.putInt("textCode", textCode);
-        b.putStringArrayList("names", names);
         f.setArguments(b);
         return f;
     }
@@ -131,7 +154,7 @@ public class SearchFragment extends Fragment {
             setSpendCoinFragment();
         } else if (message.equals("notAccept")) {
             setSearchBarFragment();
-        }else if (message.equals("showSearchBar")) {
+        } else if (message.equals("showSearchBar")) {
             setSearchBarFragment();
         }
 
