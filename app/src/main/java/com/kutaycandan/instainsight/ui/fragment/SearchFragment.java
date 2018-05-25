@@ -157,6 +157,9 @@ public class SearchFragment extends Fragment {
         } else if (message.equals("showSearchBar")) {
             setSearchBarFragment();
         }
+        else if(message.startsWith("Stalk:")){
+            tvMyStalks.setText("My stalks: "+message.substring(6));
+        }
 
     }
 }

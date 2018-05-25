@@ -2,7 +2,6 @@ package com.kutaycandan.instainsight.ui.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -23,6 +22,7 @@ import com.kutaycandan.instainsight.model.IIInvoices;
 import com.kutaycandan.instainsight.ui.activity.MainActivity;
 import com.kutaycandan.instainsight.ui.activity.UserProfileActivity;
 import com.kutaycandan.instainsight.util.BusStation;
+import com.kutaycandan.instainsight.util.Utils;
 import com.kutaycandan.instainsight.widget.RecentSearchesItem;
 import com.kutaycandan.instainsight.widget.edittext.HurmeRegularObliqueEditText;
 import com.kutaycandan.instainsight.widget.textview.HurmeRegularObliqueTextView;
@@ -55,8 +55,8 @@ public class SearchBarFragment extends Fragment {
     LinearLayout llContainerParent;
     @BindView(R.id.tv_clear_searches)
     HurmeRegularObliqueTextView tvClearSearches;
-
-
+    @BindView(R.id.ll_main)
+    LinearLayout llMain;
 
 
     public interface SearchBarListener {
@@ -74,16 +74,29 @@ public class SearchBarFragment extends Fragment {
         etUsername.addTextChangedListener(tw);
         llGo.setVisibility(View.VISIBLE);
         llRecentSearches.setVisibility(View.GONE);
+        keyboardCheckClicked();
         return view;
     }
 
     private void keyboardCheckClicked() {
         etUsername.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus)
+                if(etUsername==null){
+                    return;
+                }
+                if (hasFocus) {
                     etUsername.setHint("");
-                else
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                    Utils.setMargins(llMain,0,(int)Utils.pxFromDp(getActivity(),20),0,0);
+
+                } else {
                     etUsername.setHint("Search Instagram Usernames");
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(etUsername.getWindowToken(), 0);
+                    Utils.setMargins(llMain,0,(int)Utils.pxFromDp(getActivity(),100),0,0);
+
+                }
             }
         });
         etUsername.setOnEditorActionListener(new HurmeRegularObliqueEditText.OnEditorActionListener() {
@@ -91,6 +104,7 @@ public class SearchBarFragment extends Fragment {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     // do your stuff here
+                    Utils.setMargins(llMain,0,(int)Utils.pxFromDp(getActivity(),100),0,0);
                     if (controlIsSearched(etUsername.getText().toString())) {
                         UserProfileActivity.newIntent((MainActivity) getActivity(), etUsername.getText().toString());
                     } else {
@@ -129,9 +143,9 @@ public class SearchBarFragment extends Fragment {
             }
         }
         for (String ss : container) {
-            if(!ss.equalsIgnoreCase("instainsightapp")){
+            if (!ss.equalsIgnoreCase("instainsightapp")) {
                 tmp++;
-                if(tmp==1){
+                if (tmp == 1) {
                     RecentSearchesItem recentSearchesItem = new RecentSearchesItem(getActivity());
                     recentSearchesItem.getParams(etUsername.getText().toString());
                     llContainer.addView(recentSearchesItem);
@@ -163,7 +177,6 @@ public class SearchBarFragment extends Fragment {
         llGo.setVisibility(View.VISIBLE);
         llRecentSearches.setVisibility(View.GONE);
     }
-
 
 
     private TextWatcher tw = new TextWatcher() {
@@ -213,7 +226,7 @@ public class SearchBarFragment extends Fragment {
     @OnClick(R.id.ll_go)
     public void onGoClicked() {
         if (etUsername.getText().toString().length() > 0) {
-            etUsername.onEditorAction(EditorInfo.IME_ACTION_DONE);
+            Utils.hideSoftKeyboard(getActivity());
             listener.askUserToSpendCoin(etUsername.getText().toString());
         }
 
@@ -234,9 +247,9 @@ public class SearchBarFragment extends Fragment {
     @Subscribe
     public void receivedMessage(String message) {
         if (message.equals("hide")) {
-            etUsername.onEditorAction(EditorInfo.IME_ACTION_DONE);
+            Utils.hideSoftKeyboard(getActivity());
         }
-        if(message.equals("showDemo")){
+        if (message.equals("showDemo")) {
             etUsername.setText("instainsightapp");
         }
 

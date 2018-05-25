@@ -26,6 +26,7 @@ import com.kutaycandan.instainsight.constants.ServiceConstant;
 import com.kutaycandan.instainsight.constants.SharedPrefsConstant;
 import com.kutaycandan.instainsight.model.IIInvoice;
 import com.kutaycandan.instainsight.model.IIInvoices;
+import com.kutaycandan.instainsight.model.request.GetStalkBalanceRequest;
 import com.kutaycandan.instainsight.model.request.LoginByCookieRequest;
 import com.kutaycandan.instainsight.model.request.RegisterRequest;
 import com.kutaycandan.instainsight.model.response.BaseResponse;
@@ -115,6 +116,32 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
             callLoginRequest();
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        getStalkBalance();
+    }
+
+    public void getStalkBalance(){
+        GetStalkBalanceRequest getStalkBalanceRequest = new GetStalkBalanceRequest();
+        getStalkBalanceRequest.setToken(SharedPrefsHelper.getInstance().get(SharedPrefsConstant.TOKEN_CODE, ""));
+        getStalkBalanceRequest.setVersionCode(ServiceConstant.VERSION_CODE);
+        getStalkBalanceRequest.setUserCode(SharedPrefsHelper.getInstance().get(SharedPrefsConstant.USER_CODE,""));
+        Call<BaseResponse<Integer>> call = instaInsightService.getStalkBalance(getStalkBalanceRequest);
+        call.enqueue(new Callback<BaseResponse<Integer>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Integer>> call, Response<BaseResponse<Integer>> response) {
+                SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE,response.body().getData());
+                BusStation.getBus().post("Stalk:"+response.body().getData());
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Integer>> call, Throwable t) {
+
+            }
+        });
     }
 
     public void animation(final TextView view) {
@@ -213,6 +240,9 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
     }
 
     public ArrayList<IIInvoices> getIiInvoices() {
+        if(iiInvoices==null){
+            return new ArrayList<>();
+        }
         return iiInvoices;
     }
 

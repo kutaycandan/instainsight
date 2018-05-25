@@ -11,8 +11,10 @@ import android.widget.LinearLayout;
 
 import com.kutaycandan.instainsight.R;
 import com.kutaycandan.instainsight.constants.SharedPrefsConstant;
+import com.kutaycandan.instainsight.util.BusStation;
 import com.kutaycandan.instainsight.util.SharedPrefsHelper;
 import com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView;
+import com.squareup.otto.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,5 +55,24 @@ public class GetCoinFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        BusStation.getBus().register(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        BusStation.getBus().unregister(this);
+    }
+
+    @Subscribe
+    public void receivedMessage(String message) {
+        if(message.startsWith("Stalk:")){
+            tvMyStalks.setText("My stalks: "+message.substring(6));
+        }
+
     }
 }
