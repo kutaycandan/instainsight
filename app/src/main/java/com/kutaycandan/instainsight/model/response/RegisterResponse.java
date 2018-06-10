@@ -11,6 +11,29 @@ public class RegisterResponse implements Serializable {
     ArrayList<ArrayList<Double>> PricesInUSD;
     ArrayList<ArrayList<Double>> PricesInEUR;
 
+    public ArrayList<ArrayList<Double>> getPricesInTRY() {
+        return PricesInTRY;
+    }
+
+    public void setPricesInTRY(ArrayList<ArrayList<Double>> pricesInTRY) {
+        PricesInTRY = pricesInTRY;
+    }
+
+    public ArrayList<ArrayList<Double>> getPricesInUSD() {
+        return PricesInUSD;
+    }
+
+    public void setPricesInUSD(ArrayList<ArrayList<Double>> pricesInUSD) {
+        PricesInUSD = pricesInUSD;
+    }
+
+    public ArrayList<ArrayList<Double>> getPricesInEUR() {
+        return PricesInEUR;
+    }
+
+    public void setPricesInEUR(ArrayList<ArrayList<Double>> pricesInEUR) {
+        PricesInEUR = pricesInEUR;
+    }
 
     public com.kutaycandan.instainsight.model.IIUser getIIUser() {
         return IIUser;

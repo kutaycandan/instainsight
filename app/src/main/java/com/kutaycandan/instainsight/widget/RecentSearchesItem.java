@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import com.kutaycandan.instainsight.R;
 import com.kutaycandan.instainsight.ui.activity.MainActivity;
 import com.kutaycandan.instainsight.ui.activity.UserProfileActivity;
+import com.kutaycandan.instainsight.util.Utils;
 import com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView;
 
 import butterknife.BindView;
@@ -22,6 +23,8 @@ public class RecentSearchesItem extends FrameLayout {
     Context context;
     @BindView(R.id.tv_username)
     HurmeBoldTextView tvUsername;
+
+    int number;
 
     String username;
     public RecentSearchesItem(@NonNull Context context) {
@@ -47,23 +50,33 @@ public class RecentSearchesItem extends FrameLayout {
         ButterKnife.bind(this);
         this.context = context;
 
+
     }
 
-    public void getParams(String username) {
+    public void getParams(String username, int number) {
+        this.number=number;
         this.username=username;
         final String userNamee = username;
+        final int numberr = number;
         tvUsername.setText("@"+username);
         this.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 try{
-                    UserProfileActivity.newIntent((MainActivity)context,userNamee);
+                    Utils.hideSoftKeyboard((MainActivity)context);
+                    if(numberr!=1){
+                        UserProfileActivity.newIntent((MainActivity)context,userNamee);
+                    }
+                    else{
+                        ((MainActivity) context).askUserToSpendCoin(userNamee);
+                    }
                 }
                 catch (Exception e){
                     Log.d("lol", "performClick: problem");
                 }
             }
         });
+
     }
 
 

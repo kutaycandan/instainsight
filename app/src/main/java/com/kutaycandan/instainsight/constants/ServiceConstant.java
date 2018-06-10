@@ -14,4 +14,9 @@ public class ServiceConstant {
     public static final String POPULAR_FOLLOWERS = "PopularFollowers";
     public static final String STALKED_COUNT = "StalkedCount";
 
+
+
+    public static final String PRIVATE_CODE = "PRIVATE_CODE";
+
+    public static final int REQUEST_ID = 11;
 }

@@ -7,6 +7,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kutaycandan.instainsight.R;
 import com.kutaycandan.instainsight.constants.ServiceConstant;
@@ -77,7 +79,7 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
     InstaInsightService instaInsightService;
 
 
-
+    int amount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +124,10 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //super.onActivityResult(requestCode, resultCode, data);
         getStalkBalance();
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            Utils.hideSoftKeyboard(this);
+        }
     }
 
     public void getStalkBalance(){
@@ -187,6 +193,7 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
                         SharedPrefsHelper.getInstance().save(SharedPrefsConstant.PURCHASE_KEY_CODE, response.body().getData().getIIUser().getPurchaseKey());
                         SharedPrefsHelper.getInstance().save(SharedPrefsConstant.USER_CODE, response.body().getData().getIIUser().getUserCode());
                         SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE, response.body().getData().getIIUser().getAmount());
+                        amount=response.body().getData().getIIUser().getAmount();
                         animation(tvInsta);
                         isConnected=true;
                         initPager(1);
@@ -218,6 +225,7 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
                         SharedPrefsHelper.getInstance().save(SharedPrefsConstant.PURCHASE_KEY_CODE, response.body().getData().getIIUser().getPurchaseKey());
                         SharedPrefsHelper.getInstance().save(SharedPrefsConstant.PERMA_CODE, response.body().getData().getIIUser().getPermaCode());
                         SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE, response.body().getData().getIIUser().getAmount());
+                        amount=response.body().getData().getIIUser().getAmount();
                         if (response.body().getData().getIIUser().getIIInvoices().size() > 0) {
                             iiInvoices = response.body().getData().getIIUser().getIIInvoices();
                         }
@@ -265,7 +273,24 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
     public void isSpendAccepted(boolean isAccept) {
         if(isAccept){
             BusStation.getBus().post("showSearchBar");
-            UserProfileActivity.newIntent(this,username);
+            if(amount>0){
+                UserProfileActivity.newIntent(this,username);
+            }
+            else{
+                Toast.makeText(this,"You are out of coins.",Toast.LENGTH_LONG).show();
+                new CountDownTimer(1000,100){
+
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        vpMain.setCurrentItem(1);
+                    }
+                }.start();
+            }
         }
         else{
             BusStation.getBus().post("notAccept");

@@ -53,22 +53,5 @@ public  class BaseActivity extends AppCompatActivity {
         SharedPrefsHelper.getInstance().clearAllData();
     }
 
-    public void getStalkBalance(){
-        GetStalkBalanceRequest getStalkBalanceRequest = new GetStalkBalanceRequest();
-        getStalkBalanceRequest.setToken(SharedPrefsHelper.getInstance().get(SharedPrefsConstant.TOKEN_CODE, ""));
-        getStalkBalanceRequest.setVersionCode(ServiceConstant.VERSION_CODE);
-        getStalkBalanceRequest.setUserCode(SharedPrefsHelper.getInstance().get(SharedPrefsConstant.USER_CODE,""));
-        Call<BaseResponse<Integer>> call = instaInsightService.getStalkBalance(getStalkBalanceRequest);
-        call.enqueue(new Callback<BaseResponse<Integer>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<Integer>> call, Response<BaseResponse<Integer>> response) {
-                SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE,response.body().getData());
-            }
 
-            @Override
-            public void onFailure(Call<BaseResponse<Integer>> call, Throwable t) {
-
-            }
-        });
-    }
 }

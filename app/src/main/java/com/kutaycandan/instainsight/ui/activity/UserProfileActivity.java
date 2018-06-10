@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.kutaycandan.instainsight.R;
 import com.kutaycandan.instainsight.constants.ServiceConstant;
@@ -20,6 +21,7 @@ import com.kutaycandan.instainsight.model.InstaUserModelLikeCount;
 import com.kutaycandan.instainsight.model.InstaUserProfileData;
 import com.kutaycandan.instainsight.model.request.GetFeatureDataRequest;
 import com.kutaycandan.instainsight.model.request.GetFeatureStatesRequest;
+import com.kutaycandan.instainsight.model.request.GetStalkBalanceRequest;
 import com.kutaycandan.instainsight.model.request.OrderFeaturesRequest;
 import com.kutaycandan.instainsight.model.response.BaseResponse;
 import com.kutaycandan.instainsight.model.response.OrderFeaturesResponse;
@@ -31,6 +33,7 @@ import com.kutaycandan.instainsight.ui.fragment.ChartFragment;
 import com.kutaycandan.instainsight.ui.fragment.FeatureFragment;
 import com.kutaycandan.instainsight.ui.fragment.LoadingFragment;
 import com.kutaycandan.instainsight.ui.fragment.StalkCountFragment;
+import com.kutaycandan.instainsight.util.BusStation;
 import com.kutaycandan.instainsight.util.SharedPrefsHelper;
 import com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView;
 import com.squareup.picasso.Picasso;
@@ -68,7 +71,6 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
     InstaInsightService instaInsightService;
     ArrayList<IIFeatureOrder> iiFeatureOrders;
     int fragmentType;
-    int amount;
     Activity activity;
     FragmentTransaction transaction;
     FragmentManager manager;
@@ -76,6 +78,9 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
     ArrayList<InstaUserModel> instaUserModelArrayList;
     ArrayList<InstaUserModelLikeCount> instaUserModelLikeCountArrayList;
     ArrayList<InstaUserModelFollowerCount> instaUserModelFollowerCountArrayList;
+
+
+    int amount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,15 +97,35 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
             orderFeaturesRequest();
         }
         getButtonFragment();
-        setAmount();
-
-
 
     }
 
-    private void setAmount(){
-        tvCoinAmount.setText(""+SharedPrefsHelper.getInstance().get(SharedPrefsConstant.AMOUNT_CODE));
+    public int getAmount(){
+        return amount;
     }
+
+    public void getStalkBalance(){
+        GetStalkBalanceRequest getStalkBalanceRequest = new GetStalkBalanceRequest();
+        getStalkBalanceRequest.setToken(SharedPrefsHelper.getInstance().get(SharedPrefsConstant.TOKEN_CODE, ""));
+        getStalkBalanceRequest.setVersionCode(ServiceConstant.VERSION_CODE);
+        getStalkBalanceRequest.setUserCode(SharedPrefsHelper.getInstance().get(SharedPrefsConstant.USER_CODE,""));
+        Call<BaseResponse<Integer>> call = instaInsightService.getStalkBalance(getStalkBalanceRequest);
+        call.enqueue(new Callback<BaseResponse<Integer>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Integer>> call, Response<BaseResponse<Integer>> response) {
+                SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE,response.body().getData());
+                tvCoinAmount.setText(""+response.body().getData());
+                amount=response.body().getData();
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Integer>> call, Throwable t) {
+
+            }
+        });
+    }
+
+
 
     // ---- Fragment Call Functions
     private void getButtonFragment(){
@@ -205,17 +230,31 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
                     }
                     else{
                         if(response.body().getExceptionMessage().equals("04-PrivateAccountException")){
-                            SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE,amount);
                             finish();
-                            PrivateActivity.newIntent(activity);
+                            PrivateActivity.newIntent(activity,4);
                         }
+                        else  if(response.body().getExceptionMessage().equals("05-FamousAccountException")){
+                            finish();
+                            PrivateActivity.newIntent(activity,5);
+                        }
+                        else{
+
+                        }
+
                     }
+                }
+                if(response.code()==500){
+                    //dismissDialog();
+                    Toast.makeText(activity,"User not found.",Toast.LENGTH_LONG).show();
+                    finish();
                 }
             }
 
             @Override
             public void onFailure(Call<BaseResponse<OrderFeaturesResponse>> call, Throwable t) {
-
+                dismissDialog();
+                Toast.makeText(activity,"User not found.",Toast.LENGTH_LONG).show();
+                finish();
             }
         });
 
@@ -320,9 +359,6 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
         return "";
     }
     private void setInstaUserInfos(InstaUserProfileData instaUserInfos){
-        amount=(int)SharedPrefsHelper.getInstance().get(SharedPrefsConstant.AMOUNT_CODE);
-        SharedPrefsHelper.getInstance().save(SharedPrefsConstant.AMOUNT_CODE,amount);
-        tvCoinAmount.setText(String.valueOf(amount));
         Picasso.with(this)
                 .load(instaUserInfos.getProfilePicture())
                 .into(civProfileImage);
@@ -342,6 +378,7 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
                 if(response.isSuccessful()){
                     if(response.body().isSuccess()){
                         if(response.body().getData().isSuccess()){
+                            getStalkBalance();
                             setInstaUserInfos(response.body().getData().getData());
                             dismissDialog();
                         }
@@ -482,17 +519,41 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
 
 
     public void searchUserInRV(String s){
+        if(amount>0){
             manager = getSupportFragmentManager();
             transaction= manager.beginTransaction();
             SpendCoinDialog spendCoinDialog = SpendCoinDialog.newInstance(s);
             spendCoinDialog.show(transaction, "dialog");
+        }
+        else {
+            Toast.makeText(this,"You are out of coins.",Toast.LENGTH_LONG).show();
+            new CountDownTimer(3000,100){
+
+                @Override
+                public void onTick(long millisUntilFinished) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    GetCoinActivity.newIntent(activity);
+                }
+            }.start();
+        }
+
 
     }
 
     public static void newIntent(Activity activity, String username) {
         Intent intent = new Intent(activity, UserProfileActivity.class);
         intent.putExtra(USERNAME_CODE, username);
-        activity.startActivity(intent);
+        activity.startActivityForResult(intent,ServiceConstant.REQUEST_ID);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        getStalkBalance();
     }
 
     @Override
