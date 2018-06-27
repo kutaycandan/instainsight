@@ -212,6 +212,7 @@ public class SearchBarFragment extends Fragment {
     public void openKeyboard() {
         etUsername.requestFocus();
         etUsername.setSelection(etUsername.getText().toString().length());
+        Utils.setMargins(llMain,0,(int)Utils.pxFromDp(getActivity(),20),0,0);
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
@@ -234,6 +235,8 @@ public class SearchBarFragment extends Fragment {
         }
 
     }
+
+
 
     @Override
     public void onResume() {
@@ -258,6 +261,9 @@ public class SearchBarFragment extends Fragment {
         if (message.equals("showDemo")) {
             etUsername.setText("instainsightapp");
         }
+        /*if (message.equals("goDown")) {
+            Utils.setMargins(llMain,0,(int)Utils.pxFromDp(getActivity(),100),0,0);
+        }*/
 
     }
 }

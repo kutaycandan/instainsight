@@ -208,6 +208,18 @@ public class MainActivity extends BaseActivity implements SearchBarFragment.Sear
         });
     }
 
+
+    /*@Override
+    public void onBackPressed() {
+        View view = getCurrentFocus();
+        if (view != null) {
+            view.clearFocus();
+            BusStation.getBus().post("goDown");
+        }
+        else
+            super.onBackPressed();
+    }*/
+
     private void callLoginRequest() {
         LoginByCookieRequest loginByCookieRequest = new LoginByCookieRequest();
         loginByCookieRequest.setVersionCode(ServiceConstant.VERSION_CODE);
