@@ -147,12 +147,12 @@ public class SearchBarFragment extends Fragment {
                 tmp++;
                 if (tmp == 1) {
                     RecentSearchesItem recentSearchesItem = new RecentSearchesItem(getActivity());
-                    recentSearchesItem.getParams(etUsername.getText().toString());
+                    recentSearchesItem.getParams(etUsername.getText().toString(),tmp);
                     llContainer.addView(recentSearchesItem);
                     tmp++;
                 }
                 RecentSearchesItem recentSearchesItem = new RecentSearchesItem(getActivity());
-                recentSearchesItem.getParams(ss);
+                recentSearchesItem.getParams(ss,tmp);
                 llContainer.addView(recentSearchesItem);
             }
         }
@@ -189,6 +189,9 @@ public class SearchBarFragment extends Fragment {
         }
 
         public void onTextChanged(CharSequence s, int start, int before, int count) {
+            //if(etUsername.getText().toString().length()==0){
+            //    Utils.setMargins(llMain,0,(int)Utils.pxFromDp(getActivity(),100),0,0);
+            //}
             String search = etUsername.getText().toString();
             if (iIInvoices != null) {
                 if (iIInvoices.size() > 0) {
@@ -209,6 +212,7 @@ public class SearchBarFragment extends Fragment {
     public void openKeyboard() {
         etUsername.requestFocus();
         etUsername.setSelection(etUsername.getText().toString().length());
+        Utils.setMargins(llMain,0,(int)Utils.pxFromDp(getActivity(),20),0,0);
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
@@ -232,6 +236,8 @@ public class SearchBarFragment extends Fragment {
 
     }
 
+
+
     @Override
     public void onResume() {
         super.onResume();
@@ -247,11 +253,17 @@ public class SearchBarFragment extends Fragment {
     @Subscribe
     public void receivedMessage(String message) {
         if (message.equals("hide")) {
-            Utils.hideSoftKeyboard(getActivity());
+            View view = getActivity().getCurrentFocus();
+            if (view != null) {
+                Utils.hideSoftKeyboard(getActivity());
+            }
         }
         if (message.equals("showDemo")) {
             etUsername.setText("instainsightapp");
         }
+        /*if (message.equals("goDown")) {
+            Utils.setMargins(llMain,0,(int)Utils.pxFromDp(getActivity(),100),0,0);
+        }*/
 
     }
 }

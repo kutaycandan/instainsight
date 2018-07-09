@@ -6,10 +6,18 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.kutaycandan.instainsight.R;
+import com.kutaycandan.instainsight.constants.ServiceConstant;
+import com.kutaycandan.instainsight.constants.SharedPrefsConstant;
+import com.kutaycandan.instainsight.model.request.GetStalkBalanceRequest;
+import com.kutaycandan.instainsight.model.response.BaseResponse;
+import com.kutaycandan.instainsight.util.SharedPrefsHelper;
 import com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class GetCoinActivity extends BaseActivity {
 
@@ -38,8 +46,10 @@ public class GetCoinActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_coin);
         ButterKnife.bind(this);
+        tvMyStalks.setText("My stalks: 0");
 
     }
+
 
     public static void newIntent(Activity activity) {
         Intent intent = new Intent(activity, GetCoinActivity.class);

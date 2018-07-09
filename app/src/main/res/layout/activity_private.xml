@@ -64,6 +64,7 @@
                 android:textSize="14sp"
                 android:text="Oops!" />
             <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+                android:id="@+id/text1"
                 android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,6 +73,7 @@
                 android:text="Sorry, you can’t stalk this profile" />
 
             <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+                android:id="@+id/text2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"

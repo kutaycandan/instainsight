@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="17sp"
                     android:textColor="@color/white"
-                    android:text="2,99 TRY"/>
+                    android:text="1,99 USD"/>
                 <LinearLayout
                     android:id="@+id/btn_3coin"
                     android:layout_width="wrap_content"
@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/white"
-                    android:text="10 Stalk"/>
+                    android:text="5 Stalk"/>
                 <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="17sp"
                     android:textColor="@color/white"
-                    android:text="8,99 TRY"/>
+                    android:text="2,99 USD"/>
                 <LinearLayout
                     android:id="@+id/btn_8coin"
                     android:layout_width="wrap_content"
@@ -150,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/white"
-                    android:text="30 Stalk"/>
+                    android:text="10 Stalk"/>
                 <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -165,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="17sp"
                     android:textColor="@color/white"
-                    android:text="24,99 TRY"/>
+                    android:text="4,99 USD"/>
                 <LinearLayout
                     android:id="@+id/btn_30coin"
                     android:layout_width="wrap_content"
@@ -198,7 +198,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textColor="@color/white"
-                android:text="Best Offer: 100 Stalk Coins"
+                android:text="Best Offer: 25 Stalk Coins"
                 android:layout_marginTop="5dp"/>
             <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
                 android:id="@+id/tv_100coin"
@@ -207,7 +207,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
                 android:textColor="@color/white"
-                android:text="78,99 TRY"/>
+                android:text="6,99 USD"/>
             <LinearLayout
                 android:id="@+id/btn_100coin"
                 android:layout_width="wrap_content"
