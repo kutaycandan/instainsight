@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">InstaInsight</string>
+    <string name="app_name">Stalk</string>
+    <string name="insta_stalk">InstaStalk</string>
 </resources>

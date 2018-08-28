@@ -14,11 +14,13 @@ import android.widget.Toast;
 import com.kutaycandan.instainsight.R;
 import com.kutaycandan.instainsight.constants.ServiceConstant;
 import com.kutaycandan.instainsight.constants.SharedPrefsConstant;
+import com.kutaycandan.instainsight.model.HdProfilePicDto;
 import com.kutaycandan.instainsight.model.IIFeatureOrder;
 import com.kutaycandan.instainsight.model.InstaUserModel;
 import com.kutaycandan.instainsight.model.InstaUserModelFollowerCount;
 import com.kutaycandan.instainsight.model.InstaUserModelLikeCount;
 import com.kutaycandan.instainsight.model.InstaUserProfileData;
+import com.kutaycandan.instainsight.model.LatestPopularPostDto;
 import com.kutaycandan.instainsight.model.request.GetFeatureDataRequest;
 import com.kutaycandan.instainsight.model.request.GetFeatureStatesRequest;
 import com.kutaycandan.instainsight.model.request.GetStalkBalanceRequest;
@@ -31,6 +33,8 @@ import com.kutaycandan.instainsight.ui.dialog.SpendCoinDialog;
 import com.kutaycandan.instainsight.ui.fragment.ButtonFragment;
 import com.kutaycandan.instainsight.ui.fragment.ChartFragment;
 import com.kutaycandan.instainsight.ui.fragment.FeatureFragment;
+import com.kutaycandan.instainsight.ui.fragment.HDProfilePictureFragment;
+import com.kutaycandan.instainsight.ui.fragment.LatestPopularPostFragment;
 import com.kutaycandan.instainsight.ui.fragment.LoadingFragment;
 import com.kutaycandan.instainsight.ui.fragment.StalkCountFragment;
 import com.kutaycandan.instainsight.util.BusStation;
@@ -209,6 +213,30 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
         fragmentType=3;
     }
 
+    private void getLatestPopularPostFragment(ArrayList<LatestPopularPostDto> latestPopularPostDtoArrayList){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("latestPopularPost", latestPopularPostDtoArrayList);
+        LatestPopularPostFragment lppf = new LatestPopularPostFragment();
+        lppf.setArguments(bundle);
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
+        transaction.replace(R.id.fl_container,lppf);
+        transaction.commit();
+        fragmentType=3;
+    }
+
+    private void getHDProfilePictureFragment(HdProfilePicDto hdProfilePicDto){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("hdProfilePicDto", hdProfilePicDto);
+        HDProfilePictureFragment hppf = new HDProfilePictureFragment();
+        hppf.setArguments(bundle);
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
+        transaction.replace(R.id.fl_container,hppf);
+        transaction.commit();
+        fragmentType=3;
+    }
+
 
     // ---- Fragment Functions ends
 
@@ -295,6 +323,12 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
                             }
                             if(code==6){
                                 getFeaturesWithFollowerCount(GUID,code);
+                            }
+                            if(code==7){
+                                getLatestPopularPost(GUID,code);
+                            }
+                            if(code==8){
+                                getHDProfilePic(GUID,code);
                             }
                         }
                         else{
@@ -443,6 +477,53 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
         });
     }
 
+    private void getLatestPopularPost(final String GUID,final int code){
+        GetFeatureDataRequest getFeatureDataRequest = new GetFeatureDataRequest();
+        getFeatureDataRequest.setToken((String)SharedPrefsHelper.getInstance().get(SharedPrefsConstant.TOKEN_CODE));
+        getFeatureDataRequest.setIIFeatureOrderGuid(GUID);
+        Call<BaseResponse<BaseResponse<ArrayList<LatestPopularPostDto>>>> call = instaInsightService.getLatestPopularPostsDataRequest(getFeatureDataRequest);
+        call.enqueue(new Callback<BaseResponse<BaseResponse<ArrayList<LatestPopularPostDto>>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<BaseResponse<ArrayList<LatestPopularPostDto>>>> call, Response<BaseResponse<BaseResponse<ArrayList<LatestPopularPostDto>>>> response) {
+                if(response.isSuccessful()){
+                    if(response.body().isSuccess()){
+                        if(response.body().getData().isSuccess()){
+                            getLatestPopularPostFragment(response.body().getData().getData());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<BaseResponse<ArrayList<LatestPopularPostDto>>>> call, Throwable t) {
+
+            }
+        });
+    }
+    private void getHDProfilePic(final String GUID,final int code){
+        GetFeatureDataRequest getFeatureDataRequest = new GetFeatureDataRequest();
+        getFeatureDataRequest.setToken((String)SharedPrefsHelper.getInstance().get(SharedPrefsConstant.TOKEN_CODE));
+        getFeatureDataRequest.setIIFeatureOrderGuid(GUID);
+        Call<BaseResponse<BaseResponse<HdProfilePicDto>>> call = instaInsightService.getHdProfilePicture(getFeatureDataRequest);
+        call.enqueue(new Callback<BaseResponse<BaseResponse<HdProfilePicDto>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<BaseResponse<HdProfilePicDto>>> call, Response<BaseResponse<BaseResponse<HdProfilePicDto>>> response) {
+                if(response.isSuccessful()){
+                    if(response.body().isSuccess()){
+                        if(response.body().getData().isSuccess()){
+                            getHDProfilePictureFragment(response.body().getData().getData());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<BaseResponse<HdProfilePicDto>>> call, Throwable t) {
+
+            }
+        });
+    }
+
     private void getFeatures(final String GUID,final int code){
         GetFeatureDataRequest getFeatureDataRequest = new GetFeatureDataRequest();
         getFeatureDataRequest.setToken((String)SharedPrefsHelper.getInstance().get(SharedPrefsConstant.TOKEN_CODE));
@@ -557,11 +638,10 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
     }
 
     @Override
-    public void nonFollowersClicked() {
+    public void hdProfilePictureClicked() {
         getLoadingFragment();
-        buttonName = "Non Followers";
-        String GUID = getGUID(ServiceConstant.NON_FOLLOWERS);
-        getFeatureStatesRequest(GUID,2);
+        String GUID = getGUID(ServiceConstant.HD_PROFILE_PICTURE);
+        getFeatureStatesRequest(GUID,8);
     }
 
     @Override
@@ -589,26 +669,26 @@ public class UserProfileActivity extends BaseActivity implements ButtonFragment.
     }
 
     @Override
-    public void newFollowersClicked() {
+    public void mostActiveFollowersClicked() {
         getLoadingFragment();
-        buttonName = "New Followers";
-        String GUID = getGUID(ServiceConstant.NEW_FOLLOWERS);
+        buttonName = "Most Active Followers";
+        String GUID = getGUID(ServiceConstant.ACTIVE_FOLLOWERS);
         getFeatureStatesRequest(GUID,2);
     }
 
     @Override
-    public void mostLikesSentClicked() {
+    public void latestPopularPostClicked() {
         getLoadingFragment();
-        buttonName = "Most Likes Sent";
-        String GUID = getGUID(ServiceConstant.MOST_LIKES_SENT);
-        getFeatureStatesRequest(GUID,5);
+        buttonName = "Latest Popular Posts";
+        String GUID = getGUID(ServiceConstant.LATEST_POPULAR_POSTS);
+        getFeatureStatesRequest(GUID,7);
     }
 
     @Override
-    public void newFollowingClicked() {
+    public void nonFollowersClicked() {
         getLoadingFragment();
-        buttonName = "New Following";
-        String GUID = getGUID(ServiceConstant.NEW_FOLLOWING);
+        buttonName = "Non Followers";
+        String GUID = getGUID(ServiceConstant.NON_FOLLOWERS);
         getFeatureStatesRequest(GUID,2);
     }
 

@@ -8,6 +8,7 @@ public class SharedPrefsConstant {
     public static final String ADKEY_CODE = "ADKEY_CODE";
     public static final String AMOUNT_CODE = "AMOUNT_CODE";
     public static final String PERMA_CODE = "PERMA_CODE";
+    public static final String STRING_URL = "STRING_URL";
 
     public static final String TRY_CODE_3 = "TRY_CODE_3";
     public static final String TRY_CODE_10 = "TRY_CODE_10";

@@ -27,7 +27,7 @@
             android:layout_centerHorizontal="true"
             android:textColor="@color/white"
             android:textSize="23sp"
-            android:text="InstaInsight"/>
+            android:text="@string/insta_stalk"/>
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

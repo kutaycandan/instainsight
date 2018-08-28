@@ -51,7 +51,7 @@
         android:id="@+id/tv_insta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="InstaInsight"
+        android:text="@string/insta_stalk"
         android:layout_centerHorizontal="true"
         android:textSize="40sp"
         android:layout_marginTop="240px"

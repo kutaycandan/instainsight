@@ -1,5 +1,6 @@
 package com.kutaycandan.instainsight.ui.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -27,6 +28,45 @@ public class GetCoinFragment extends Fragment {
     @BindView(R.id.ll_footer)
     LinearLayout llFooter;
     Unbinder unbinder;
+    @BindView(R.id.tv_3coin)
+    HurmeBoldTextView tv3coin;
+    @BindView(R.id.btn_3coin)
+    LinearLayout btn3coin;
+
+    GetCoinListener listener;
+    @BindView(R.id.tv_5coin)
+    HurmeBoldTextView tv5coin;
+    @BindView(R.id.btn_5coin)
+    LinearLayout btn5coin;
+    @BindView(R.id.tv_10coin)
+    HurmeBoldTextView tv10coin;
+    @BindView(R.id.btn_10coin)
+    LinearLayout btn10coin;
+    @BindView(R.id.tv_25coin)
+    HurmeBoldTextView tv25coin;
+    @BindView(R.id.btn_25coin)
+    LinearLayout btn25coin;
+
+    public interface GetCoinListener {
+        public void get3coin();
+
+        public void get5coin();
+
+        public void get10coin();
+
+        public void get25coin();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            listener = (GetCoinListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString());
+        }
+    }
+
 
     @Nullable
     @Override
@@ -36,11 +76,40 @@ public class GetCoinFragment extends Fragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             if (bundle.getInt("textCode") != -1) {
-                tvMyStalks.setText(tvMyStalks.getText().toString()+ SharedPrefsHelper.getInstance().get(SharedPrefsConstant.AMOUNT_CODE));
+                tvMyStalks.setText(tvMyStalks.getText().toString() + SharedPrefsHelper.getInstance().get(SharedPrefsConstant.AMOUNT_CODE));
             }
         }
+        setClickListeners();
 
         return view;
+    }
+
+
+    public void setClickListeners() {
+        btn3coin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.get3coin();
+            }
+        });
+        btn5coin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.get5coin();
+            }
+        });
+        btn10coin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.get10coin();
+            }
+        });
+        btn25coin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.get25coin();
+            }
+        });
     }
 
     public static GetCoinFragment newInstance(int textCode) {
@@ -56,6 +125,7 @@ public class GetCoinFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -70,9 +140,14 @@ public class GetCoinFragment extends Fragment {
 
     @Subscribe
     public void receivedMessage(String message) {
-        if(message.startsWith("Stalk:")){
-            tvMyStalks.setText("My stalks: "+message.substring(6));
+        if (message.startsWith("Stalk:")) {
+            tvMyStalks.setText("My stalks: " + message.substring(6));
         }
 
     }
+
+
+    //Billing methods
+
+
 }

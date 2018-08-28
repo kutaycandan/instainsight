@@ -32,7 +32,7 @@
         <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="InstaInsight"
+            android:text="@string/insta_stalk"
             android:layout_gravity="center"
             android:textSize="20sp"
             android:textColor="@color/white"/>
@@ -113,7 +113,7 @@
                     android:textColor="@color/white"
                     android:text="Coins"/>
                 <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
-                    android:id="@+id/tv_8coin"
+                    android:id="@+id/tv_5coin"
                     android:layout_marginTop="40dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                     android:textColor="@color/white"
                     android:text="2,99 USD"/>
                 <LinearLayout
-                    android:id="@+id/btn_8coin"
+                    android:id="@+id/btn_5coin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
@@ -158,8 +158,7 @@
                 android:textColor="@color/white"
                 android:text="Coins"/>
             <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
-                android:id="@+id/tv_30coin"
-
+                android:id="@+id/tv_10coin"
                 android:layout_marginTop="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -167,7 +166,7 @@
                 android:textColor="@color/white"
                 android:text="4,99 USD"/>
             <LinearLayout
-                android:id="@+id/btn_30coin"
+                android:id="@+id/btn_10coin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
@@ -201,7 +200,7 @@
                 android:text="Best Offer: 25 Stalk Coins"
                 android:layout_marginTop="5dp"/>
             <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
-                android:id="@+id/tv_100coin"
+                android:id="@+id/tv_25coin"
                 android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -209,7 +208,7 @@
                 android:textColor="@color/white"
                 android:text="6,99 USD"/>
             <LinearLayout
-                android:id="@+id/btn_100coin"
+                android:id="@+id/btn_25coin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
