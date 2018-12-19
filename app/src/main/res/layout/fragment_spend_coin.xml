@@ -22,26 +22,26 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="18dp">
-            <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+            <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:text="You will spend "/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:text="1 Stalk Coin"/>
         </LinearLayout>
-        <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+        <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:text="to view analytics of this profile." />
-        <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+        <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
@@ -55,7 +55,7 @@
         android:layout_marginTop="3dp"
         android:gravity="center"
         android:background="@drawable/background_main_warning_bot">
-        <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+        <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
@@ -70,7 +70,7 @@
         android:orientation="vertical"
         android:padding="5dp"
         >
-        <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+        <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"

@@ -1,7 +1,0 @@
-package com.kutaycandan.instainsight.constants;
-
-public class BillingConstant {
-    public static final String THREE_STALK_COIN = "3stalkcoin";
-    public static final String BASE_64_CODE = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxkFb8b568H7h6iWzNCYjC/LV+XEpUXdwivRECXoWpJOW5b7BY8suSCTIq3x1UQ2qhQmES7Amb8BB8MS6lM4WaZwUsWwfsLQQ5BeoGG9al34oHxF4KcxAopQxlftogQ9wpgq94hR39E5+HArPkY9irFqLpuSYL9t9crp+o8CJV5+Bzv6qK2xPdmV0t0lD/2qZJpicDg8JsVO8O0H3n5nrqUMq1pxLzWFNKxcqT8q4M7HTNzMaghLN+UN1hKhUDsI2pNbvqMdrjX2G2ZVHZ5vkKrc0QAhAqmiISRgNoV0twmthRQC83AAbK2eDcjf4BxuX6xyoIVl36NykCcCNN3I92wIDAQAB";
-
-}

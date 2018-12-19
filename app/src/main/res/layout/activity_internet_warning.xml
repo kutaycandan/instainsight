@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@color/insta_blue">
-    <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+    <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
         android:id="@+id/tv_insta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,21 +33,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_warning_white" />
-            <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+            <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
                 android:layout_marginTop="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:text="Your Internet connection appears to " />
-            <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+            <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:text="be offline. Please check your connection" />
 
-            <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+            <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -63,7 +63,7 @@
             android:gravity="center"
             android:background="@drawable/background_main_warning_bot">
 
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"

@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     >
-    <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+    <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
         android:id="@+id/tv_insta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,13 +15,13 @@
         android:textColor="@color/white"
         android:layout_marginBottom="70dp"/>
 
-    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+    <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:text="Please wait,"/>
-    <com.kutaycandan.instainsight.widget.textview.HurmeSemiBoldObliqueTextView
+    <com.mirvinstalk.app.widget.textview.HurmeSemiBoldObliqueTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"

@@ -16,26 +16,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+        <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="@color/white"
             android:text="You will spend "/>
-        <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+        <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="@color/white"
             android:text="1 Stalk Coin"/>
     </LinearLayout>
-    <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+    <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="@color/white"
         android:text="to view analytics of this profile."/>
-    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+    <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
@@ -52,7 +52,7 @@
         android:orientation="horizontal"
         android:weightSum="2"
         android:gravity="center">
-        <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+        <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
             android:id="@+id/tv_cancel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -65,7 +65,7 @@
             android:layout_width="0.3dp"
             android:layout_height="match_parent"
             android:background="@color/white"/>
-        <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+        <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
             android:id="@+id/tv_accept"
             android:layout_width="0dp"
             android:layout_height="match_parent"

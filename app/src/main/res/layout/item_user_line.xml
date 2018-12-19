@@ -15,7 +15,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="30dp" />
 
-    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+    <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
         android:id="@+id/tv_fullname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/background_blue_corner">
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"

@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.kutaycandan.instainsight"
+        applicationId "com.mirvinstalk.app"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
@@ -63,6 +63,12 @@ dependencies {
 
     //Billing
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'
+
+    //Json Parser
+    implementation 'com.google.code.gson:gson:2.7'
+
+
+
 
 
 

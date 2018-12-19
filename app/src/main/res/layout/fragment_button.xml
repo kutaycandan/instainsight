@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:weightSum="5"
     android:gravity="center">
-    <com.kutaycandan.instainsight.widget.textview.HurmeRegularObliqueTextView
+    <com.mirvinstalk.app.widget.textview.HurmeRegularObliqueTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/insta_blue"
@@ -13,60 +13,6 @@
         android:text="See more detailed analytics for this account"
         android:textSize="11sp"
         android:layout_marginBottom="10dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingRight="15dp"
-        android:paddingLeft="15dp"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_marginBottom="4dp">
-        <LinearLayout
-            android:id="@+id/ll_most_active_followers"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:background="@drawable/background_button_grey_border_with_corners"
-            android:gravity="center"
-            android:layout_marginRight="4dp"
-            >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_new_followers"
-                android:layout_marginBottom="6dp"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/insta_blue"
-                android:textSize="14sp"
-                android:text="Most Active Followers"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/ll_profile_stalkers"
-
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:background="@drawable/background_button_grey_border_with_corners"
-            android:gravity="center"
-            >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_profile_stalkers"
-                android:layout_marginBottom="6dp"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/insta_blue"
-                android:textSize="14sp"
-                android:text="Profile Stalkers"/>
-        </LinearLayout>
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -89,9 +35,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_non_following"
+                android:background="@drawable/ic_new_following"
                 android:layout_marginBottom="6dp"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/insta_blue"
@@ -99,7 +45,7 @@
                 android:text="HD Profile Picture"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/ll_top_likers"
+            android:id="@+id/ll_profile_stalkers"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -110,14 +56,16 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_top_likers"
+                android:alpha="0.5"
+                android:background="@drawable/ic_profile_stalkers"
                 android:layout_marginBottom="6dp"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/insta_blue"
+                android:alpha="0.8"
                 android:textSize="14sp"
-                android:text="Top Likers"/>
+                android:text="Profile Stalkers"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -144,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_non_followers"
                 android:layout_marginBottom="6dp"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/insta_blue"
@@ -152,7 +100,7 @@
                 android:text="Non-Followers"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/ll_latest_popular_post"
+            android:id="@+id/ll_top_likers"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -163,14 +111,14 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_most_likes_sent"
+                android:background="@drawable/ic_top_likers"
                 android:layout_marginBottom="6dp"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/insta_blue"
                 android:textSize="14sp"
-                android:text="Latest Popular Posts"/>
+                android:text="Top Likers"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -197,12 +145,66 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_non_following"
                 android:layout_marginBottom="6dp"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/insta_blue"
                 android:textSize="14sp"
                 android:text="Non-Following"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_latest_popular_post"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/background_button_grey_border_with_corners"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_most_likes_sent"
+                android:layout_marginBottom="6dp"/>
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/insta_blue"
+                android:textSize="14sp"
+                android:text="Latest Popular Posts"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginBottom="4dp">
+        <LinearLayout
+            android:id="@+id/ll_like_trend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/background_button_grey_border_with_corners"
+            android:gravity="center"
+            android:layout_marginRight="4dp"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_like_trend"
+                android:layout_marginBottom="6dp"/>
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/insta_blue"
+                android:textSize="14sp"
+                android:text="Like Trend"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/ll_popular_followers"
@@ -218,7 +220,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_popular_followers"
                 android:layout_marginBottom="6dp"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/insta_blue"
@@ -236,7 +238,7 @@
         android:weightSum="2"
         android:layout_marginBottom="14dp">
         <LinearLayout
-            android:id="@+id/ll_like_trend"
+            android:id="@+id/ll_most_active_followers"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -248,14 +250,14 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_like_trend"
+                android:background="@drawable/ic_new_followers"
                 android:layout_marginBottom="6dp"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/insta_blue"
                 android:textSize="14sp"
-                android:text="Like Trend"/>
+                android:text="Most Active Followers"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/ll_stalk_count"
@@ -271,7 +273,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_ghost_followers"
                 android:layout_marginBottom="6dp"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/insta_blue"

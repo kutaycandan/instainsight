@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal">
-    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+    <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:layout_width="wrap_content"

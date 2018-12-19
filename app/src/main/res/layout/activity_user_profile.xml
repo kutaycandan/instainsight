@@ -20,7 +20,7 @@
             android:layout_marginLeft="10dp"
             android:padding="5dp"
             android:src="@drawable/ic_go_back" />
-        <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+        <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_coin_wallet"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:id="@+id/tv_coin_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             android:id="@+id/civ_profile_image"
             android:layout_width="62dp"
             android:layout_height="62dp"/>
-        <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+        <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
             android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,13 +85,13 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center">
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:id="@+id/tv_post_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_black"
                 android:textSize="12sp"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+            <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_black"
@@ -110,13 +110,13 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:id="@+id/tv_followers_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_black"
                 android:textSize="12sp"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+            <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_black"
@@ -135,13 +135,13 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:id="@+id/tv_following_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_black"
                 android:textSize="12sp"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+            <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_black"

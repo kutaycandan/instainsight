@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+    <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
         android:id="@+id/tv_feature_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,32 +22,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-            <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+            <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/insta_blue"
                 android:textSize="20sp"
                 android:layout_gravity="center_horizontal"
                 android:text="Full Size of the Profile Picture"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="50dp" />
-            <RelativeLayout
+                android:layout_marginBottom="15dp" />
+            <ImageView
+                android:id="@+id/iv_image"
+                android:padding="2dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:orientation="vertical"
-                >
-                <ImageView
-                    android:id="@+id/iv_image"
-                    android:layout_margin="1dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/background_blue_border"/>
-            </RelativeLayout>
+                android:background="@drawable/background_blue_border"/>
+
         </LinearLayout>
 
     <LinearLayout
@@ -60,7 +50,7 @@
         android:background="@color/insta_blue"
         android:layout_alignParentBottom="true"
         >
-        <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+        <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"

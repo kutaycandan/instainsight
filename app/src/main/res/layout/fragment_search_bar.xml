@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/ic_search_bar"
             android:layout_centerHorizontal="true"/>
-        <com.kutaycandan.instainsight.widget.edittext.HurmeRegularObliqueEditText
+        <com.mirvinstalk.app.widget.edittext.HurmeRegularObliqueEditText
             android:id="@+id/et_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:layout_centerHorizontal="true"
             android:orientation="vertical"
             android:gravity="center">
-            <com.kutaycandan.instainsight.widget.textview.HurmeSemiBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeSemiBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Go!"
@@ -52,15 +52,15 @@
         <LinearLayout
             android:visibility="gone"
             android:id="@+id/ll_recent_searches"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_marginTop="6dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_centerHorizontal="true">
-            <com.kutaycandan.instainsight.widget.textview.HurmeRegularObliqueTextView
+            <com.mirvinstalk.app.widget.textview.HurmeRegularObliqueTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="9sp"
+                android:textSize="12sp"
                 android:text="Recent Searches"
                 android:textColor="@color/white"
                 />
@@ -82,13 +82,13 @@
 
             </LinearLayout>
 
-            <com.kutaycandan.instainsight.widget.textview.HurmeRegularObliqueTextView
+            <com.mirvinstalk.app.widget.textview.HurmeRegularObliqueTextView
                 android:id="@+id/tv_clear_searches"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
-                android:textSize="5sp"
+                android:textSize="10sp"
                 android:padding="5dp"
                 android:text="Clear Searches"/>
         </LinearLayout>

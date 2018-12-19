@@ -16,13 +16,10 @@
         >
         <ImageView
             android:id="@+id/iv_container"
-            android:layout_margin="1dp"
+            android:padding="2dp"
+            android:background="@drawable/background_blue_border"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background_blue_border"/>
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
     <LinearLayout
         android:layout_marginLeft="16dp"
@@ -35,7 +32,7 @@
             android:layout_height="match_parent"
             android:src="@drawable/icon_like_count"
             android:layout_marginRight="4dp"/>
-        <com.kutaycandan.instainsight.widget.textview.HurmeSemiBoldTextView
+        <com.mirvinstalk.app.widget.textview.HurmeSemiBoldTextView
             android:id="@+id/tv_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +45,7 @@
             android:layout_height="match_parent"
             android:src="@drawable/icon_comment_count"
             android:layout_marginRight="4dp"/>
-        <com.kutaycandan.instainsight.widget.textview.HurmeSemiBoldTextView
+        <com.mirvinstalk.app.widget.textview.HurmeSemiBoldTextView
             android:id="@+id/tv_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

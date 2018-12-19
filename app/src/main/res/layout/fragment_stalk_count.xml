@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+    <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/insta_blue"
@@ -18,7 +18,7 @@
         android:gravity="center"
         android:orientation="vertical"
         >
-        <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+        <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/insta_blue"
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_stalk_circle"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBlackTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBlackTextView
                 android:id="@+id/tv_stalk_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:weightSum="5">
-            <com.kutaycandan.instainsight.widget.textview.HurmeBlackTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBlackTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
@@ -117,7 +117,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/insta_blue"
                 />
-            <com.kutaycandan.instainsight.widget.textview.HurmeBlackTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBlackTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
@@ -127,7 +127,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/insta_blue"
                 />
-            <com.kutaycandan.instainsight.widget.textview.HurmeBlackTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBlackTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
@@ -137,7 +137,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/insta_blue"
                 />
-            <com.kutaycandan.instainsight.widget.textview.HurmeBlackTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBlackTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
@@ -147,7 +147,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/insta_blue"
                 />
-            <com.kutaycandan.instainsight.widget.textview.HurmeBlackTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBlackTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
@@ -157,7 +157,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/insta_blue"
                 />
-            <com.kutaycandan.instainsight.widget.textview.HurmeBlackTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBlackTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
@@ -177,7 +177,7 @@
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:weightSum="5">
-            <com.kutaycandan.instainsight.widget.textview.HurmeBlackTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBlackTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="8sp"
@@ -189,7 +189,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/insta_blue"
                 />
-            <com.kutaycandan.instainsight.widget.textview.HurmeBlackTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBlackTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="8sp"
@@ -201,7 +201,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/insta_blue"
                 />
-            <com.kutaycandan.instainsight.widget.textview.HurmeBlackTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBlackTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="8sp"
@@ -214,7 +214,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/insta_blue"
                 />
-            <com.kutaycandan.instainsight.widget.textview.HurmeBlackTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBlackTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="8sp"
@@ -227,7 +227,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/insta_blue"
                 />
-            <com.kutaycandan.instainsight.widget.textview.HurmeBlackTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBlackTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="8sp"
@@ -240,7 +240,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/insta_blue"
                 />
-            <com.kutaycandan.instainsight.widget.textview.HurmeBlackTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBlackTextView
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:textSize="8sp"

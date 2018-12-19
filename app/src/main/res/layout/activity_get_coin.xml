@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_coin"
                 android:layout_gravity="center_vertical"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                 android:id="@+id/tv_my_stalks"
                 android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
                 android:layout_gravity="center_vertical"
                 />
         </LinearLayout>
-        <com.kutaycandan.instainsight.widget.textview.HurmeRegularTextView
+        <com.mirvinstalk.app.widget.textview.HurmeRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/insta_stalk"
@@ -54,19 +54,20 @@
                 android:background="@drawable/background_get_coin_column"
                 android:orientation="vertical"
                 >
-                <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
+                    android:id="@+id/tv_3stalk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/white"
                     android:text="3 Stalk"/>
-                <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/white"
                     android:text="Coins"/>
-                <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                     android:id="@+id/tv_3coin"
                     android:layout_marginTop="40dp"
                     android:layout_width="wrap_content"
@@ -81,7 +82,7 @@
                     android:layout_marginTop="50dp"
                     android:gravity="center"
                     android:background="@drawable/background_purchase">
-                    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                    <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Purchase"
@@ -100,20 +101,21 @@
                 android:background="@drawable/background_get_coin_column"
                 android:orientation="vertical"
                 >
-                <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
+                    android:id="@+id/tv_5stalk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/white"
                     android:text="5 Stalk"/>
-                <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/white"
                     android:text="Coins"/>
-                <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
-                    android:id="@+id/tv_8coin"
+                <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
+                    android:id="@+id/tv_5coin"
                     android:layout_marginTop="40dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,13 +123,13 @@
                     android:textColor="@color/white"
                     android:text="2,99 USD"/>
                 <LinearLayout
-                    android:id="@+id/btn_8coin"
+                    android:id="@+id/btn_5coin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
                     android:gravity="center"
                     android:background="@drawable/background_purchase">
-                    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                    <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Purchase"
@@ -145,21 +147,21 @@
                 android:background="@drawable/background_get_coin_column"
                 android:orientation="vertical"
                 >
-                <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
+                    android:id="@+id/tv_10stalk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/white"
                     android:text="10 Stalk"/>
-                <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/white"
                     android:text="Coins"/>
-                <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
-                    android:id="@+id/tv_30coin"
-
+                <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
+                    android:id="@+id/tv_10coin"
                     android:layout_marginTop="40dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -167,13 +169,13 @@
                     android:textColor="@color/white"
                     android:text="4,99 USD"/>
                 <LinearLayout
-                    android:id="@+id/btn_30coin"
+                    android:id="@+id/btn_10coin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
                     android:gravity="center"
                     android:background="@drawable/background_purchase">
-                    <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                    <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Purchase"
@@ -193,15 +195,16 @@
             android:gravity="center"
             android:orientation="vertical"
             android:background="@drawable/background_get_coin_row">
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
+                android:id="@+id/tv_25stalk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textColor="@color/white"
                 android:text="Best Offer: 25 Stalk Coins"
                 android:layout_marginTop="5dp"/>
-            <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
-                android:id="@+id/tv_100coin"
+            <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
+                android:id="@+id/tv_25coin"
                 android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -209,14 +212,14 @@
                 android:textColor="@color/white"
                 android:text="6,99 USD"/>
             <LinearLayout
-                android:id="@+id/btn_100coin"
+                android:id="@+id/btn_25coin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="6dp"
                 android:gravity="center"
                 android:background="@drawable/background_purchase">
-                <com.kutaycandan.instainsight.widget.textview.HurmeBoldTextView
+                <com.mirvinstalk.app.widget.textview.HurmeBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Purchase"
